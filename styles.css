@@ -396,19 +396,133 @@ section {
 }
 
 .map-container {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
-    height: 600px;
     border: 3px solid var(--primary);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    position: relative;
-    background: #e8edf2;
+    background: var(--off-white);
 }
 
-.map-container svg {
-    width: 100%;
-    height: 100%;
-    display: block;
+.service-area-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 500px;
+}
+
+.service-radius-circle {
+    background: linear-gradient(135deg, #2d3142 0%, #3d4255 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 3rem;
+}
+
+.radius-ring {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border: 3px dashed var(--secondary);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.1); opacity: 0.5; }
+}
+
+.center-marker {
+    text-align: center;
+    z-index: 2;
+}
+
+.marker-pin {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.marker-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.marker-label strong {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--secondary);
+    letter-spacing: 1px;
+}
+
+.marker-label span {
+    color: var(--light);
+    font-size: 1.1rem;
+}
+
+.radius-label {
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--secondary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.towns-served {
+    padding: 3rem;
+    background: white;
+}
+
+.towns-served h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+
+.towns-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.town-item {
+    background: var(--off-white);
+    padding: 0.75rem 1rem;
+    border-left: 3px solid var(--secondary);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.town-item:hover {
+    background: var(--secondary);
+    color: white;
+    transform: translateX(5px);
+}
+
+.coverage-note {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    font-style: italic;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--off-white);
 }
 
 /* Products Section */
@@ -891,6 +1005,18 @@ a.contact-bar-value:hover {
         grid-template-columns: 1fr;
     }
     
+    .service-area-visual {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-radius-circle {
+        min-height: 400px;
+    }
+    
+    .towns-served {
+        padding: 2.5rem;
+    }
+    
     .about-stats {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -978,6 +1104,45 @@ a.contact-bar-value:hover {
     .calculator-container {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+    
+    .service-area-visual {
+        grid-template-columns: 1fr;
+    }
+    
+    .service-radius-circle {
+        min-height: 350px;
+        padding: 2rem;
+    }
+    
+    .radius-ring {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .marker-pin {
+        font-size: 3rem;
+    }
+    
+    .marker-label strong {
+        font-size: 1.3rem;
+    }
+    
+    .marker-label span {
+        font-size: 1rem;
+    }
+    
+    .towns-served {
+        padding: 2rem 1.5rem;
+    }
+    
+    .towns-served h3 {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .towns-grid {
+        grid-template-columns: 1fr;
     }
     
     .calculator-form,
