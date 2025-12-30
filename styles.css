@@ -160,6 +160,9 @@ body {
     z-index: 3;
     text-align: center;
     color: white;
+    padding: 2rem 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .hero-badge {
@@ -174,6 +177,7 @@ body {
     letter-spacing: 3px;
     margin-bottom: 2rem;
     border: 2px solid rgba(239, 131, 84, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 .badge-icon {
@@ -198,11 +202,10 @@ body {
 }
 
 .hero-feature-bars {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     margin-bottom: 2rem;
-    flex-wrap: wrap;
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
@@ -211,11 +214,13 @@ body {
 .feature-bar {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
     background: rgba(255, 255, 255, 0.1);
     padding: 0.8rem 1.5rem;
     border-left: 3px solid var(--secondary);
     backdrop-filter: blur(10px);
+    white-space: nowrap;
 }
 
 .feature-icon {
@@ -226,9 +231,11 @@ body {
     font-size: 1.2rem;
     color: var(--light);
     margin-bottom: 3rem;
-    max-width: 700px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.6;
+    padding: 0 1rem;
 }
 
 .hero-cta {
@@ -865,6 +872,19 @@ a.contact-bar-value:hover {
         display: flex;
     }
     
+    .hero-title {
+        font-size: 4rem;
+    }
+    
+    .hero-feature-bars {
+        gap: 1rem;
+    }
+    
+    .feature-bar {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.95rem;
+    }
+    
     .about-content,
     .calculator-container,
     .contact-bar-content {
@@ -872,7 +892,7 @@ a.contact-bar-value:hover {
     }
     
     .about-stats {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(3, 1fr);
     }
     
     .form-row {
@@ -882,12 +902,17 @@ a.contact-bar-value:hover {
     .footer-content {
         grid-template-columns: 1fr;
     }
+    
+    .map-container {
+        height: 500px;
+    }
 }
 
 @media (max-width: 640px) {
     .hero {
-        padding-top: 70px;
-        padding-bottom: 2rem;
+        padding-top: 80px;
+        padding-bottom: 3rem;
+        min-height: 100vh;
     }
     
     .hero-content {
@@ -895,25 +920,120 @@ a.contact-bar-value:hover {
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
+        line-height: 1;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-badge {
+        font-size: 0.75rem;
+        padding: 0.6rem 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
     }
     
     .hero-feature-bars {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         gap: 0.75rem;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+    
+    .feature-bar {
+        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
     }
     
     .hero-cta {
         flex-direction: column;
+        gap: 1rem;
+        padding: 0 1rem;
     }
     
     .btn {
         width: 100%;
+        max-width: 350px;
         justify-content: center;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
     }
     
     .services-grid,
     .products-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .about-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .calculator-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .calculator-form,
+    .calculator-results {
+        padding: 2rem 1.5rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-bar-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .contact-bar-item {
+        padding: 1.25rem;
+    }
+    
+    .footer-links {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 400px) {
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-badge {
+        font-size: 0.7rem;
+        padding: 0.5rem 1.2rem;
+        letter-spacing: 2px;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
+    
+    .feature-bar {
+        font-size: 0.85rem;
+        padding: 0.7rem 1rem;
+    }
+    
+    .btn {
+        font-size: 0.95rem;
+        padding: 0.9rem 1.2rem;
+    }
+    
+    .logo-text {
+        font-size: 2rem;
+    }
+    
+    .logo-subtext {
+        font-size: 0.9rem;
     }
 }
