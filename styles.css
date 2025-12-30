@@ -192,8 +192,8 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    filter: blur(5px) brightness(0.5);
-    opacity: 0.7;
+    filter: blur(3px) brightness(0.6);
+    opacity: 0.8;
     z-index: 0;
     animation: subtleZoom 20s ease-in-out infinite alternate;
 }
