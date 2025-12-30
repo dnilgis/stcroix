@@ -354,19 +354,29 @@ document.getElementById('calc-estimate-btn').addEventListener('click', () => {
     };
 });
 
-// Request Quote button - pre-fill contact form
+// Request Quote button - call phone number
 document.getElementById('request-quote-btn').addEventListener('click', () => {
     if (window.lastEstimate) {
-        const message = `I would like to request an official quote for:\n\n` +
-                       `Cubic Yards: ${window.lastEstimate.yards}\n` +
-                       `Mix Type: ${window.lastEstimate.mix}\n` +
-                       `Delivery Address: ${window.lastEstimate.address}\n` +
-                       `Estimated Total: $${window.lastEstimate.total}\n\n` +
-                       `Please provide an official quote. Thank you!`;
+        // Copy estimate to clipboard
+        const estimateText = `St. Croix Materials Estimate:\n\n` +
+                           `Cubic Yards: ${window.lastEstimate.yards}\n` +
+                           `Mix Type: ${window.lastEstimate.mix}\n` +
+                           `Delivery Address: ${window.lastEstimate.address}\n` +
+                           `Estimated Total: $${window.lastEstimate.total}\n\n` +
+                           `Call (715) 557-0563 to confirm your order!`;
         
-        document.getElementById('message').value = message;
+        // Try to copy to clipboard
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(estimateText).then(() => {
+                alert('Estimate copied to clipboard! Call us at (715) 557-0563 to place your order.');
+            }).catch(() => {
+                alert('Your estimate:\n\n' + estimateText);
+            });
+        } else {
+            alert('Your estimate:\n\n' + estimateText);
+        }
         
-        // Scroll to contact form
-        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        // Open phone dialer
+        window.location.href = 'tel:+17155570563';
     }
 });
