@@ -1,4 +1,6 @@
 // Mobile menu toggle
+console.log('St. Croix Materials site loaded!');
+
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
@@ -223,112 +225,148 @@ function animate() {
 
 animate();
 
-// Service Area Map Visualization - SIMPLIFIED
-window.addEventListener('load', function() {
-    const mapElement = document.getElementById('service-map');
-    if (!mapElement) return;
-    
-    // Wait for element to be fully rendered
-    setTimeout(() => {
-        const mapWidth = mapElement.offsetWidth;
-        const mapHeight = mapElement.offsetHeight;
-        const radiusPixels = Math.min(mapWidth, mapHeight) * 0.35;
+// Concrete Calculator
+const calcTabs = document.querySelectorAll('.calc-tab');
+const calcTabContents = document.querySelectorAll('.calc-tab-content');
+
+calcTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const tabName = tab.dataset.tab;
         
-        // Create HTML for the entire map
-        mapElement.innerHTML = `
-            <!-- Grid Background -->
-            <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.15; pointer-events: none;">
-                <defs>
-                    <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                        <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#2d3142" stroke-width="0.5"/>
-                    </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#grid)" />
-            </svg>
-            
-            <!-- Service Radius Circle -->
-            <div style="
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                width: ${radiusPixels * 2}px;
-                height: ${radiusPixels * 2}px;
-                transform: translate(-50%, -50%);
-                border: 3px solid #ef8354;
-                border-radius: 50%;
-                background: radial-gradient(circle, rgba(239, 131, 84, 0.15), rgba(239, 131, 84, 0.05), transparent 70%);
-                animation: radiusPulse 3s ease-in-out infinite;
-            "></div>
-            
-            <!-- Nearby Towns -->
-            <div style="position: absolute; left: calc(50% - 15%); top: calc(50% + 20%); width: 8px; height: 8px; border-radius: 50%; background: #4f5d75; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Rice Lake"></div>
-            <div style="position: absolute; left: calc(50% - 15%); top: calc(50% + 20% - 30px); font-size: 0.75rem; font-weight: 600; color: #1a1a1a; white-space: nowrap;">Rice Lake</div>
-            
-            <div style="position: absolute; left: calc(50% + 30%); top: calc(50% - 10%); width: 8px; height: 8px; border-radius: 50%; background: #4f5d75; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Spooner"></div>
-            <div style="position: absolute; left: calc(50% + 30%); top: calc(50% - 10% - 30px); font-size: 0.75rem; font-weight: 600; color: #1a1a1a; white-space: nowrap;">Spooner</div>
-            
-            <div style="position: absolute; left: calc(50% - 30%); top: calc(50% - 15%); width: 8px; height: 8px; border-radius: 50%; background: #4f5d75; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Cumberland"></div>
-            <div style="position: absolute; left: calc(50% - 30%); top: calc(50% - 15% - 30px); font-size: 0.75rem; font-weight: 600; color: #1a1a1a; white-space: nowrap;">Cumberland</div>
-            
-            <div style="position: absolute; left: calc(50% - 25%); top: calc(50% + 5%); width: 8px; height: 8px; border-radius: 50%; background: #4f5d75; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.2);" title="Barron"></div>
-            <div style="position: absolute; left: calc(50% - 25%); top: calc(50% + 5% - 30px); font-size: 0.75rem; font-weight: 600; color: #1a1a1a; white-space: nowrap;">Barron</div>
-            
-            <!-- Center Marker -->
-            <div style="
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                width: 40px;
-                height: 40px;
-                transform: translate(-50%, -100%);
-                animation: markerBounce 2s ease-in-out infinite;
-            ">
-                <svg viewBox="0 0 24 36" style="width: 100%; height: 100%; fill: #ef8354; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
-                    <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24c0-6.6-5.4-12-12-12zm0 16c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z"/>
-                </svg>
-            </div>
-            
-            <!-- Location Label -->
-            <div style="
-                position: absolute;
-                left: 50%;
-                top: calc(50% - 50px);
-                transform: translateX(-50%);
-                background: #2d3142;
-                color: white;
-                padding: 0.5rem 1rem;
-                border-radius: 4px;
-                font-weight: 600;
-                font-size: 0.9rem;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            ">
-                Centuria, WI
-                <div style="
-                    position: absolute;
-                    bottom: -6px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    width: 0;
-                    height: 0;
-                    border-left: 6px solid transparent;
-                    border-right: 6px solid transparent;
-                    border-top: 6px solid #2d3142;
-                "></div>
-            </div>
-            
-            <!-- Radius Label -->
-            <div style="
-                position: absolute;
-                top: 10px;
-                right: 10px;
-                background: rgba(45, 49, 66, 0.9);
-                color: white;
-                padding: 0.75rem 1.25rem;
-                border-radius: 4px;
-                font-weight: 600;
-                font-size: 0.95rem;
-                border-left: 4px solid #ef8354;
-            ">45 Mile Service Radius</div>
-        `;
-    }, 100);
+        calcTabs.forEach(t => t.classList.remove('active'));
+        calcTabContents.forEach(c => c.classList.remove('active'));
+        
+        tab.classList.add('active');
+        document.getElementById(`${tabName}-tab`).classList.add('active');
+    });
+});
+
+// Mix prices
+const mixPrices = {
+    'standard': 150,
+    'high-strength': 180,
+    'fiber': 170,
+    'air': 160
+};
+
+const mixNames = {
+    'standard': 'Standard Mix (3000-4000 PSI)',
+    'high-strength': 'High-Strength (5000+ PSI)',
+    'fiber': 'Fiber-Reinforced',
+    'air': 'Air-Entrained'
+};
+
+// Calculate distance from Centuria, WI (simplified - would use real geocoding in production)
+function calculateDeliveryFee(address) {
+    // In production, you'd use Google Maps Geocoding API
+    // For now, we'll use a simple estimate based on city names
+    const lowerAddress = address.toLowerCase();
+    
+    // Free delivery within 15 miles
+    if (lowerAddress.includes('centuria') || lowerAddress.includes('balsam lake')) {
+        return 0;
+    }
+    // $50 for 15-30 miles
+    else if (lowerAddress.includes('rice lake') || lowerAddress.includes('barron') || 
+             lowerAddress.includes('frederic') || lowerAddress.includes('luck')) {
+        return 50;
+    }
+    // $75 for 30-45 miles
+    else if (lowerAddress.includes('spooner') || lowerAddress.includes('cumberland') || 
+             lowerAddress.includes('turtle lake') || lowerAddress.includes('shell lake')) {
+        return 75;
+    }
+    // $100 for edge of service area
+    else {
+        return 100;
+    }
+}
+
+document.getElementById('calc-estimate-btn').addEventListener('click', () => {
+    let cubicYards = 0;
+    
+    // Check which tab is active
+    const dimensionsActive = document.getElementById('dimensions-tab').classList.contains('active');
+    
+    if (dimensionsActive) {
+        // Calculate from dimensions
+        const length = parseFloat(document.getElementById('calc-length').value) || 0;
+        const width = parseFloat(document.getElementById('calc-width').value) || 0;
+        const depth = parseFloat(document.getElementById('calc-depth').value) || 0;
+        
+        if (length <= 0 || width <= 0 || depth <= 0) {
+            alert('Please enter valid dimensions');
+            return;
+        }
+        
+        // Convert to cubic yards (L x W x D(in feet) / 27)
+        const depthFeet = depth / 12;
+        cubicYards = (length * width * depthFeet) / 27;
+    } else {
+        // Use direct cubic yards input
+        cubicYards = parseFloat(document.getElementById('calc-yards').value) || 0;
+        
+        if (cubicYards <= 0) {
+            alert('Please enter cubic yards needed');
+            return;
+        }
+    }
+    
+    // Get mix type and address
+    const mixType = document.getElementById('calc-mix').value;
+    const address = document.getElementById('calc-address').value.trim();
+    
+    if (!address) {
+        alert('Please enter a delivery address');
+        return;
+    }
+    
+    // Calculate costs
+    const pricePerYard = mixPrices[mixType];
+    const materialCost = cubicYards * pricePerYard;
+    const deliveryFee = calculateDeliveryFee(address);
+    const total = materialCost + deliveryFee;
+    
+    // Minimum order
+    const minYards = 1;
+    if (cubicYards < minYards) {
+        alert(`Minimum order is ${minYards} cubic yard`);
+        return;
+    }
+    
+    // Update results
+    document.getElementById('result-yards').textContent = cubicYards.toFixed(2) + ' yd³';
+    document.getElementById('result-mix').textContent = mixNames[mixType];
+    document.getElementById('result-material').textContent = '$' + materialCost.toFixed(2);
+    document.getElementById('result-delivery').textContent = '$' + deliveryFee.toFixed(2);
+    document.getElementById('result-total').textContent = '$' + total.toFixed(2);
+    
+    // Show results
+    document.querySelector('.results-help').style.display = 'none';
+    document.querySelector('.results-details').style.display = 'block';
+    
+    // Store estimate data for quote request
+    window.lastEstimate = {
+        yards: cubicYards.toFixed(2),
+        mix: mixNames[mixType],
+        address: address,
+        total: total.toFixed(2)
+    };
+});
+
+// Request Quote button - pre-fill contact form
+document.getElementById('request-quote-btn').addEventListener('click', () => {
+    if (window.lastEstimate) {
+        const message = `I would like to request an official quote for:\n\n` +
+                       `Cubic Yards: ${window.lastEstimate.yards}\n` +
+                       `Mix Type: ${window.lastEstimate.mix}\n` +
+                       `Delivery Address: ${window.lastEstimate.address}\n` +
+                       `Estimated Total: $${window.lastEstimate.total}\n\n` +
+                       `Please provide an official quote. Thank you!`;
+        
+        document.getElementById('message').value = message;
+        
+        // Scroll to contact form
+        document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+    }
 });
