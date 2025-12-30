@@ -1414,6 +1414,87 @@ body {
     font-size: 1rem;
 }
 
+/* Contact Bar */
+.contact-bar {
+    background: var(--secondary);
+    padding: 3rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 50px,
+            rgba(0, 0, 0, 0.05) 50px,
+            rgba(0, 0, 0, 0.05) 100px
+        );
+    pointer-events: none;
+}
+
+.contact-bar-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-bar-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 4px solid white;
+    transition: var(--transition);
+}
+
+.contact-bar-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.contact-bar-item svg {
+    color: white;
+    flex-shrink: 0;
+}
+
+.contact-bar-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-bar-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0.25rem;
+}
+
+.contact-bar-value {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+}
+
+a.contact-bar-value:hover {
+    color: var(--primary-dark);
+}
+
 /* Footer */
 .footer {
     background: var(--primary-dark);
@@ -1514,9 +1595,9 @@ body {
     }
     
     .about-content,
-    .contact-grid,
     .footer-content,
-    .calculator-container {
+    .calculator-container,
+    .contact-bar-content {
         grid-template-columns: 1fr;
     }
     
@@ -1526,10 +1607,6 @@ body {
     
     .about-stats {
         grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .contact-form {
-        grid-template-columns: 1fr;
     }
     
     .map-container {
