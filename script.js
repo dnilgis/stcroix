@@ -1,6 +1,50 @@
 // Mobile menu toggle
 console.log('St. Croix Materials site loaded!');
 
+// FORCE LOAD background image with multiple fallbacks
+const bgImage = document.querySelector('.hero-bg-image');
+if (bgImage) {
+    console.log('Background image element found');
+    
+    // Try multiple image paths in order
+    const imagePaths = [
+        'concrete-pour.jpg',
+        './concrete-pour.jpg', 
+        '/concrete-pour.jpg',
+        window.location.origin + '/concrete-pour.jpg',
+        'https://raw.githubusercontent.com/dnilgis/stcroix/main/concrete-pour.jpg'
+    ];
+    
+    let currentIndex = 0;
+    
+    function tryNextPath() {
+        if (currentIndex >= imagePaths.length) {
+            console.error('❌ All image paths failed');
+            return;
+        }
+        
+        const path = imagePaths[currentIndex];
+        console.log(`Trying path ${currentIndex + 1}/${imagePaths.length}: ${path}`);
+        
+        const testImg = new Image();
+        testImg.onload = function() {
+            console.log('✅ Image loaded successfully from:', path);
+            bgImage.style.backgroundImage = `url('${path}')`;
+            bgImage.style.backgroundSize = 'cover';
+            bgImage.style.backgroundPosition = 'center';
+        };
+        testImg.onerror = function() {
+            console.log('❌ Failed:', path);
+            currentIndex++;
+            tryNextPath();
+        };
+        testImg.src = path;
+    }
+    
+    tryNextPath();
+}
+
+
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
