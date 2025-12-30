@@ -224,122 +224,131 @@ function animate() {
 animate();
 
 // Service Area Map Visualization
-const mapElement = document.getElementById('service-map');
-if (mapElement) {
-    // Centuria, WI coordinates (approximate center of map)
-    const centerLat = 45.4805; // Centuria latitude
-    const centerLon = -92.5566; // Centuria longitude
+document.addEventListener('DOMContentLoaded', function() {
+    const mapElement = document.getElementById('service-map');
+    if (!mapElement) return;
     
-    // Create map with simplified visualization
-    const mapWidth = mapElement.offsetWidth;
-    const mapHeight = mapElement.offsetHeight;
-    
-    // Calculate radius in pixels (45 miles)
-    // Rough approximation: 1 degree ≈ 69 miles
-    const radiusInDegrees = 45 / 69;
-    const radiusPixels = Math.min(mapWidth, mapHeight) * 0.35;
-    
-    // Create service radius circle
-    const radiusCircle = document.createElement('div');
-    radiusCircle.className = 'service-radius';
-    radiusCircle.style.width = radiusPixels * 2 + 'px';
-    radiusCircle.style.height = radiusPixels * 2 + 'px';
-    radiusCircle.style.left = '50%';
-    radiusCircle.style.top = '50%';
-    mapElement.appendChild(radiusCircle);
-    
-    // Create marker pin SVG
-    const marker = document.createElement('div');
-    marker.className = 'map-marker';
-    marker.style.left = '50%';
-    marker.style.top = '50%';
-    marker.innerHTML = `
-        <svg class="map-marker-pin" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24c0-6.6-5.4-12-12-12zm0 16c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z"/>
-        </svg>
-    `;
-    mapElement.appendChild(marker);
-    
-    // Create location label
-    const label = document.createElement('div');
-    label.className = 'map-label';
-    label.textContent = 'Centuria, WI';
-    label.style.left = '50%';
-    label.style.top = '50%';
-    mapElement.appendChild(label);
-    
-    // Create radius info label
-    const radiusLabel = document.createElement('div');
-    radiusLabel.className = 'radius-label';
-    radiusLabel.innerHTML = '45 Mile Service Radius';
-    mapElement.appendChild(radiusLabel);
-    
-    // Add some nearby town indicators (approximate positions relative to Centuria)
-    const towns = [
-        { name: 'Rice Lake', offsetX: -15, offsetY: 20 },
-        { name: 'Spooner', offsetX: 30, offsetY: -10 },
-        { name: 'Cumberland', offsetX: -30, offsetY: -15 },
-        { name: 'Barron', offsetX: -25, offsetY: 5 },
-    ];
-    
-    towns.forEach(town => {
-        const townDot = document.createElement('div');
-        townDot.style.position = 'absolute';
-        townDot.style.width = '8px';
-        townDot.style.height = '8px';
-        townDot.style.borderRadius = '50%';
-        townDot.style.background = 'var(--accent)';
-        townDot.style.border = '2px solid white';
-        townDot.style.left = `calc(50% + ${town.offsetX}%)`;
-        townDot.style.top = `calc(50% + ${town.offsetY}%)`;
-        townDot.style.transform = 'translate(-50%, -50%)';
-        townDot.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
-        townDot.title = town.name;
-        mapElement.appendChild(townDot);
+    // Wait a bit for the element to be fully rendered
+    setTimeout(() => {
+        // Centuria, WI coordinates (approximate center of map)
+        const centerLat = 45.4805; // Centuria latitude
+        const centerLon = -92.5566; // Centuria longitude
         
-        const townLabel = document.createElement('div');
-        townLabel.style.position = 'absolute';
-        townLabel.style.left = `calc(50% + ${town.offsetX}%)`;
-        townLabel.style.top = `calc(50% + ${town.offsetY}%)`;
-        townLabel.style.transform = 'translate(-50%, -200%)';
-        townLabel.style.fontSize = '0.75rem';
-        townLabel.style.fontWeight = '600';
-        townLabel.style.color = 'var(--text-dark)';
-        townLabel.style.whiteSpace = 'nowrap';
-        townLabel.textContent = town.name;
-        mapElement.appendChild(townLabel);
-    });
-    
-    // Add grid lines for visual interest
-    const gridSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    gridSvg.style.position = 'absolute';
-    gridSvg.style.top = '0';
-    gridSvg.style.left = '0';
-    gridSvg.style.width = '100%';
-    gridSvg.style.height = '100%';
-    gridSvg.style.pointerEvents = 'none';
-    gridSvg.style.opacity = '0.1';
-    
-    // Draw grid
-    for (let i = 0; i <= 10; i++) {
-        const lineH = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        lineH.setAttribute('x1', '0');
-        lineH.setAttribute('y1', `${i * 10}%`);
-        lineH.setAttribute('x2', '100%');
-        lineH.setAttribute('y2', `${i * 10}%`);
-        lineH.setAttribute('stroke', '#2d3142');
-        lineH.setAttribute('stroke-width', '1');
-        gridSvg.appendChild(lineH);
+        // Create map with simplified visualization
+        const mapWidth = mapElement.offsetWidth;
+        const mapHeight = mapElement.offsetHeight;
         
-        const lineV = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        lineV.setAttribute('x1', `${i * 10}%`);
-        lineV.setAttribute('y1', '0');
-        lineV.setAttribute('x2', `${i * 10}%`);
-        lineV.setAttribute('y2', '100%');
-        lineV.setAttribute('stroke', '#2d3142');
-        lineV.setAttribute('stroke-width', '1');
-        gridSvg.appendChild(lineV);
-    }
-    
-    mapElement.insertBefore(gridSvg, mapElement.firstChild);
-}
+        console.log('Map dimensions:', mapWidth, mapHeight); // Debug
+        
+        // Calculate radius in pixels (45 miles)
+        const radiusPixels = Math.min(mapWidth, mapHeight) * 0.35;
+        
+        // Add grid lines for visual interest FIRST
+        const gridSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        gridSvg.style.position = 'absolute';
+        gridSvg.style.top = '0';
+        gridSvg.style.left = '0';
+        gridSvg.style.width = '100%';
+        gridSvg.style.height = '100%';
+        gridSvg.style.pointerEvents = 'none';
+        gridSvg.style.opacity = '0.15';
+        gridSvg.setAttribute('viewBox', '0 0 100 100');
+        gridSvg.setAttribute('preserveAspectRatio', 'none');
+        
+        // Draw grid
+        for (let i = 0; i <= 10; i++) {
+            const lineH = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            lineH.setAttribute('x1', '0');
+            lineH.setAttribute('y1', `${i * 10}`);
+            lineH.setAttribute('x2', '100');
+            lineH.setAttribute('y2', `${i * 10}`);
+            lineH.setAttribute('stroke', '#2d3142');
+            lineH.setAttribute('stroke-width', '0.5');
+            gridSvg.appendChild(lineH);
+            
+            const lineV = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            lineV.setAttribute('x1', `${i * 10}`);
+            lineV.setAttribute('y1', '0');
+            lineV.setAttribute('x2', `${i * 10}`);
+            lineV.setAttribute('y2', '100');
+            lineV.setAttribute('stroke', '#2d3142');
+            lineV.setAttribute('stroke-width', '0.5');
+            gridSvg.appendChild(lineV);
+        }
+        
+        mapElement.appendChild(gridSvg);
+        
+        // Create service radius circle
+        const radiusCircle = document.createElement('div');
+        radiusCircle.className = 'service-radius';
+        radiusCircle.style.width = radiusPixels * 2 + 'px';
+        radiusCircle.style.height = radiusPixels * 2 + 'px';
+        radiusCircle.style.left = '50%';
+        radiusCircle.style.top = '50%';
+        mapElement.appendChild(radiusCircle);
+        
+        // Add some nearby town indicators (approximate positions relative to Centuria)
+        const towns = [
+            { name: 'Rice Lake', offsetX: -15, offsetY: 20 },
+            { name: 'Spooner', offsetX: 30, offsetY: -10 },
+            { name: 'Cumberland', offsetX: -30, offsetY: -15 },
+            { name: 'Barron', offsetX: -25, offsetY: 5 },
+        ];
+        
+        towns.forEach(town => {
+            const townDot = document.createElement('div');
+            townDot.style.position = 'absolute';
+            townDot.style.width = '8px';
+            townDot.style.height = '8px';
+            townDot.style.borderRadius = '50%';
+            townDot.style.background = 'var(--accent)';
+            townDot.style.border = '2px solid white';
+            townDot.style.left = `calc(50% + ${town.offsetX}%)`;
+            townDot.style.top = `calc(50% + ${town.offsetY}%)`;
+            townDot.style.transform = 'translate(-50%, -50%)';
+            townDot.style.boxShadow = '0 2px 4px rgba(0,0,0,0.2)';
+            townDot.title = town.name;
+            mapElement.appendChild(townDot);
+            
+            const townLabel = document.createElement('div');
+            townLabel.style.position = 'absolute';
+            townLabel.style.left = `calc(50% + ${town.offsetX}%)`;
+            townLabel.style.top = `calc(50% + ${town.offsetY}%)`;
+            townLabel.style.transform = 'translate(-50%, -200%)';
+            townLabel.style.fontSize = '0.75rem';
+            townLabel.style.fontWeight = '600';
+            townLabel.style.color = 'var(--text-dark)';
+            townLabel.style.whiteSpace = 'nowrap';
+            townLabel.textContent = town.name;
+            mapElement.appendChild(townLabel);
+        });
+        
+        // Create marker pin SVG
+        const marker = document.createElement('div');
+        marker.className = 'map-marker';
+        marker.style.left = '50%';
+        marker.style.top = '50%';
+        marker.innerHTML = `
+            <svg class="map-marker-pin" viewBox="0 0 24 36" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24c0-6.6-5.4-12-12-12zm0 16c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z"/>
+            </svg>
+        `;
+        mapElement.appendChild(marker);
+        
+        // Create location label
+        const label = document.createElement('div');
+        label.className = 'map-label';
+        label.textContent = 'Centuria, WI';
+        label.style.left = '50%';
+        label.style.top = '50%';
+        mapElement.appendChild(label);
+        
+        // Create radius info label
+        const radiusLabel = document.createElement('div');
+        radiusLabel.className = 'radius-label';
+        radiusLabel.innerHTML = '45 Mile Service Radius';
+        mapElement.appendChild(radiusLabel);
+        
+        console.log('Map elements created'); // Debug
+    }, 100);
+});
