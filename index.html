@@ -36,8 +36,8 @@
     <header class="hero">
         <canvas id="particles-canvas"></canvas>
         
-        <!-- Background image loaded via JavaScript -->
-        <div class="hero-bg-image" id="hero-bg"></div>
+        <!-- Blurred background image -->
+        <div class="hero-bg-image"></div>
         
         <div class="hero-overlay"></div>
         
@@ -151,9 +151,9 @@
                 <p class="section-description">Proudly serving a 45-mile radius from our Centuria, WI location</p>
             </div>
             <div class="map-container">
-                <!-- Google Map iframe centered on Centuria -->
+                <!-- Interactive Google Map centered on Centuria, WI -->
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d184617.36077972943!2d-92.74939204999999!3d45.4805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52b4bb8b8b8b8b8b%3A0x1234567890abcdef!2s783%201st%20St%2C%20Centuria%2C%20WI%2054824!5e0!3m2!1sen!2sus!4v1234567890"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d92308.68038986471!2d-92.62766099999999!3d45.4805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52b4f5e8c7e8e8e9%3A0x1!2s783%201st%20St%2C%20Centuria%2C%20WI%2054824!5e0!3m2!1sen!2sus!4v1640000000000"
                     width="100%" 
                     height="100%" 
                     style="border:0;" 
@@ -162,56 +162,24 @@
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
                 
-                <!-- Service radius overlay with better visibility -->
-                <div class="service-radius-overlay">
-                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style="pointer-events: none;">
-                        <!-- Outer glow -->
-                        <circle cx="50" cy="50" r="36" 
-                            fill="none" 
-                            stroke="rgba(239, 131, 84, 0.4)" 
-                            stroke-width="3"/>
-                        <!-- Main circle with fill -->
-                        <circle cx="50" cy="50" r="35" 
-                            fill="rgba(239, 131, 84, 0.25)" 
-                            stroke="rgba(239, 131, 84, 1)" 
-                            stroke-width="2.5"
-                            stroke-dasharray="5,3">
-                            <animate attributeName="r" values="35;36;35" dur="3s" repeatCount="indefinite"/>
-                            <animate attributeName="stroke-opacity" values="0.7;1;0.7" dur="3s" repeatCount="indefinite"/>
-                        </circle>
-                        <!-- Center pin marker -->
-                        <g transform="translate(50, 50)">
-                            <!-- Pin shadow -->
-                            <ellipse cx="0" cy="10" rx="3" ry="1.5" fill="rgba(0,0,0,0.5)"/>
-                            <!-- Pin -->
-                            <path d="M0,-12 C-3,-12 -6,-9 -6,-6 C-6,-3 0,6 0,6 C0,6 6,-3 6,-6 C6,-9 3,-12 0,-12 Z" 
-                                fill="#ef8354" 
-                                stroke="#d96e3f" 
-                                stroke-width="0.8">
-                                <animateTransform
-                                    attributeName="transform"
-                                    type="translate"
-                                    values="0,0; 0,-3; 0,0"
-                                    dur="2s"
-                                    repeatCount="indefinite"/>
-                            </path>
-                            <!-- Pin center -->
-                            <circle cx="0" cy="-6" r="2" fill="white"/>
-                        </g>
-                    </svg>
-                </div>
-                
-                <!-- Map info badges -->
-                <div class="map-badges">
-                    <div class="map-badge map-badge-location">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <!-- Info badge -->
+                <div class="map-info-box">
+                    <div class="map-info-badge">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                             <circle cx="12" cy="10" r="3"></circle>
                         </svg>
-                        St. Croix Materials - Centuria, WI
+                        <div>
+                            <strong>St. Croix Materials</strong>
+                            <div style="font-size: 0.85rem; opacity: 0.9;">783 1st St, Centuria, WI</div>
+                        </div>
                     </div>
-                    <div class="map-badge map-badge-radius">
-                        <strong>45-Mile</strong> Service Radius
+                    <div class="map-info-badge map-radius-badge">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2v20M2 12h20"></path>
+                        </svg>
+                        <strong>45-Mile Service Radius</strong>
                     </div>
                 </div>
             </div>
