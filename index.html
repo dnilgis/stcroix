@@ -21,6 +21,7 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#service-area">Service Area</a></li>
                 <li><a href="#products">Products</a></li>
+                <li><a href="#calculator">Calculator</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact" class="btn-contact">Contact</a></li>
             </ul>
@@ -337,6 +338,106 @@
                 </div>
                 <div class="about-image">
                     <img src="concrete-pour.jpg" alt="St. Croix Materials concrete pour operation with pump truck" style="width: 100%; height: 100%; object-fit: cover; border: 3px solid var(--secondary);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="calculator">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">GET AN ESTIMATE</span>
+                <h2 class="section-title">Concrete Calculator</h2>
+                <p class="section-description">Get an instant estimate for your project</p>
+            </div>
+            <div class="calculator-container">
+                <div class="calculator-form">
+                    <div class="calc-tabs">
+                        <button class="calc-tab active" data-tab="dimensions">Dimensions</button>
+                        <button class="calc-tab" data-tab="yards">Cubic Yards</button>
+                    </div>
+                    
+                    <div class="calc-tab-content active" id="dimensions-tab">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Length (feet)</label>
+                                <input type="number" id="calc-length" placeholder="0" min="0" step="0.5">
+                            </div>
+                            <div class="form-group">
+                                <label>Width (feet)</label>
+                                <input type="number" id="calc-width" placeholder="0" min="0" step="0.5">
+                            </div>
+                            <div class="form-group">
+                                <label>Depth (inches)</label>
+                                <input type="number" id="calc-depth" placeholder="4" min="0" step="0.5">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="calc-tab-content" id="yards-tab">
+                        <div class="form-group">
+                            <label>Cubic Yards Needed</label>
+                            <input type="number" id="calc-yards" placeholder="0" min="0" step="0.5">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Mix Type</label>
+                        <select id="calc-mix">
+                            <option value="standard">Standard Mix (3000-4000 PSI) - $150/yd³</option>
+                            <option value="high-strength">High-Strength (5000+ PSI) - $180/yd³</option>
+                            <option value="fiber">Fiber-Reinforced - $170/yd³</option>
+                            <option value="air">Air-Entrained - $160/yd³</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Delivery Address</label>
+                        <input type="text" id="calc-address" placeholder="Enter your address">
+                        <small class="help-text">We serve a 45-mile radius from Centuria, WI</small>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-large" id="calc-estimate-btn">
+                        Calculate Estimate
+                    </button>
+                </div>
+                
+                <div class="calculator-results" id="calc-results">
+                    <div class="results-content">
+                        <div class="results-icon">📊</div>
+                        <h3>Your Estimate</h3>
+                        <p class="results-help">Enter your project details to see an estimate</p>
+                        
+                        <div class="results-details" style="display: none;">
+                            <div class="result-item">
+                                <span class="result-label">Cubic Yards</span>
+                                <span class="result-value" id="result-yards">0</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Mix Type</span>
+                                <span class="result-value" id="result-mix">-</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Material Cost</span>
+                                <span class="result-value" id="result-material">$0</span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Delivery Fee</span>
+                                <span class="result-value" id="result-delivery">$0</span>
+                            </div>
+                            <div class="result-divider"></div>
+                            <div class="result-item result-total">
+                                <span class="result-label">Estimated Total</span>
+                                <span class="result-value" id="result-total">$0</span>
+                            </div>
+                            
+                            <button class="btn btn-secondary btn-block" id="request-quote-btn">
+                                Request Official Quote
+                            </button>
+                            
+                            <p class="disclaimer">*Estimate only. Final pricing may vary based on site conditions and availability.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
