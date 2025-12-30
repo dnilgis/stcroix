@@ -2,23 +2,6 @@
 
 console.log('St. Croix Materials site loaded!');
 
-// Force background image load
-document.addEventListener('DOMContentLoaded', function() {
-    const heroBg = document.querySelector('.hero-bg-image');
-    if (heroBg) {
-        const img = new Image();
-        img.onload = function() {
-            console.log('✅ Background image loaded!');
-            heroBg.style.backgroundImage = 'url(/concrete-pour.jpg)';
-        };
-        img.onerror = function() {
-            console.warn('Background image not found, using gradient');
-            heroBg.style.background = 'linear-gradient(135deg, #1a1d2e 0%, #2d3142 50%, #1a1d2e 100%)';
-        };
-        img.src = '/concrete-pour.jpg';
-    }
-});
-
 // Mobile menu toggle
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navLinks = document.querySelector('.nav-links');
