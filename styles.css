@@ -172,6 +172,15 @@ body {
     overflow: hidden;
 }
 
+#particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
 .hero::before {
     content: '';
     position: absolute;
@@ -386,6 +395,140 @@ body {
     background: linear-gradient(90deg, var(--secondary), var(--primary));
 }
 
+.section-description {
+    text-align: center;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Service Area Map Section */
+.service-area {
+    padding: 8rem 0;
+    background: white;
+    position: relative;
+}
+
+.map-container {
+    max-width: 900px;
+    margin: 0 auto;
+    height: 600px;
+    position: relative;
+    border: 3px solid var(--primary);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+#service-map {
+    width: 100%;
+    height: 100%;
+    background: #e8edf2;
+    position: relative;
+}
+
+.map-marker {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    transform: translate(-50%, -100%);
+    animation: markerBounce 2s ease-in-out infinite;
+}
+
+.map-marker-pin {
+    width: 100%;
+    height: 100%;
+    fill: var(--secondary);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes markerBounce {
+    0%, 100% {
+        transform: translate(-50%, -100%) translateY(0);
+    }
+    50% {
+        transform: translate(-50%, -100%) translateY(-10px);
+    }
+}
+
+.service-radius {
+    position: absolute;
+    border: 3px solid var(--secondary);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(239, 131, 84, 0.15), rgba(239, 131, 84, 0.05), transparent 70%);
+    pointer-events: none;
+    animation: radiusPulse 3s ease-in-out infinite;
+}
+
+@keyframes radiusPulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translate(-50%, -50%) scale(1.02);
+    }
+}
+
+.map-label {
+    position: absolute;
+    background: var(--primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, -120%);
+}
+
+.map-label::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid var(--primary);
+}
+
+.radius-label {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(45, 49, 66, 0.9);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-left: 4px solid var(--secondary);
+}
+
+/* Services Section */
+.services {
+    padding: 8rem 0;
+    background: var(--off-white);
+    position: relative;
+}
+
+.services::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--secondary), var(--primary));
+}
+
 .section-header {
     text-align: center;
     margin-bottom: 4rem;
@@ -409,8 +552,10 @@ body {
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .service-card {
@@ -967,6 +1112,10 @@ body {
     
     .contact-form {
         grid-template-columns: 1fr;
+    }
+    
+    .map-container {
+        height: 400px;
     }
 }
 
