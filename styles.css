@@ -222,14 +222,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: 
-        repeating-linear-gradient(
-            90deg,
-            transparent,
-            transparent 100px,
-            rgba(239, 131, 84, 0.02) 100px,
-            rgba(239, 131, 84, 0.02) 101px
-        );
+    background: rgba(26, 29, 46, 0.3);
     opacity: 1;
     z-index: 1;
 }
@@ -259,107 +252,6 @@ body {
     z-index: 1;
 }
 
-/* Dramatic diagonal stripes */
-.hero-stripes {
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 100px,
-        rgba(239, 131, 84, 0.08) 100px,
-        rgba(239, 131, 84, 0.08) 200px
-    );
-    animation: stripesMove 20s linear infinite;
-    z-index: 1;
-}
-
-@keyframes stripesMove {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(50px, 50px); }
-}
-
-/* Floating geometric shapes */
-.hero-shapes {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    overflow: hidden;
-}
-
-.shape {
-    position: absolute;
-    border: 3px solid rgba(239, 131, 84, 0.4);
-    opacity: 0.7;
-}
-
-.shape-1 {
-    width: 300px;
-    height: 300px;
-    top: 10%;
-    right: 5%;
-    border-radius: 50%;
-    animation: float1 15s ease-in-out infinite;
-}
-
-.shape-2 {
-    width: 200px;
-    height: 200px;
-    bottom: 10%;
-    left: 10%;
-    transform: rotate(45deg);
-    animation: float2 12s ease-in-out infinite;
-}
-
-.shape-3 {
-    width: 150px;
-    height: 150px;
-    top: 60%;
-    right: 15%;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-    border: 3px solid rgba(239, 131, 84, 0.3);
-    animation: float3 18s ease-in-out infinite;
-}
-
-.shape-4 {
-    width: 250px;
-    height: 250px;
-    top: 25%;
-    left: 5%;
-    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-    animation: float4 20s ease-in-out infinite;
-}
-
-@keyframes float1 {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    50% { transform: translate(30px, -30px) rotate(180deg); }
-}
-
-@keyframes float2 {
-    0%, 100% { transform: translate(0, 0) rotate(45deg); }
-    50% { transform: translate(-40px, 20px) rotate(225deg); }
-}
-
-@keyframes float3 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(20px, 30px) scale(1.1); }
-}
-
-@keyframes float4 {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    50% { transform: translate(-20px, -40px) rotate(90deg); }
-}
-
-/* Giant background text */
-.hero-bg-text {
-    position: absolute;
-    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: var(--font-display);
