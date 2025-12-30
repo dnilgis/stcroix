@@ -58,16 +58,18 @@ body {
 
 .logo-text {
     font-family: var(--font-display);
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: var(--primary);
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    font-weight: 900;
 }
 
 .logo-subtext {
     font-family: var(--font-display);
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     color: var(--secondary);
-    letter-spacing: 4px;
+    letter-spacing: 5px;
+    font-weight: 700;
 }
 
 .nav-links {
@@ -123,8 +125,25 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    background: linear-gradient(135deg, #1a1d2e 0%, #2d3142 50%, #1a1d2e 100%);
+    background: 
+        linear-gradient(rgba(26, 29, 46, 0.75), rgba(26, 29, 46, 0.75)),
+        url('concrete-pour.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(3px);
+    pointer-events: none;
+    z-index: 1;
 }
 
 #particles-canvas {
@@ -133,43 +152,12 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0;
-}
-
-.hero-bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/concrete-pour.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    filter: blur(4px) brightness(0.5);
-    opacity: 0.85;
-    z-index: 0;
-    animation: subtleZoom 20s ease-in-out infinite alternate;
-}
-
-@keyframes subtleZoom {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.1); }
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(26, 29, 46, 0.4);
-    z-index: 1;
+    z-index: 2;
 }
 
 .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     text-align: center;
     color: white;
 }
@@ -197,16 +185,12 @@ body {
     font-size: clamp(3rem, 8vw, 7rem);
     line-height: 0.9;
     margin-bottom: 2rem;
+    color: white;
+    font-weight: 900;
 }
 
 .title-line {
     display: block;
-}
-
-.title-stroke {
-    color: transparent;
-    -webkit-text-stroke: 2px white;
-    text-stroke: 2px white;
 }
 
 .title-highlight {
@@ -216,8 +200,12 @@ body {
 .hero-feature-bars {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
     margin-bottom: 2rem;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .feature-bar {
@@ -300,7 +288,7 @@ body {
     color: white;
     font-family: var(--font-display);
     letter-spacing: 2px;
-    z-index: 2;
+    z-index: 3;
 }
 
 .scroll-indicator {
