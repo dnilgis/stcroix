@@ -181,42 +181,6 @@ body {
     z-index: 0;
 }
 
-/* Blurred background image */
-.hero-bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('./concrete-pour.jpg') !important;
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    filter: blur(3px) brightness(0.6);
-    opacity: 0.8;
-    z-index: 0;
-    animation: subtleZoom 20s ease-in-out infinite alternate;
-}
-
-/* Fallback if image doesn't load */
-.hero-bg-image::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #1a1d2e 0%, #2d3142 50%, #1a1d2e 100%);
-    z-index: -1;
-}
-
-@keyframes subtleZoom {
-    0% { transform: scale(1); }
-    100% { transform: scale(1.1); }
-}
-
-.hero::before {
-    content: '';
     position: absolute;
     top: 0;
     left: 0;
@@ -618,6 +582,69 @@ body {
     width: 100%;
     height: 100%;
     display: block;
+}
+
+.service-radius-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.service-radius-overlay svg {
+    width: 80%;
+    height: 80%;
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(239, 131, 84, 0.5));
+}
+
+.map-badges {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.map-badge {
+    background: rgba(45, 49, 66, 0.95);
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.map-badge-location {
+    border-left: 4px solid var(--secondary);
+}
+
+.map-badge-location svg {
+    color: var(--secondary);
+}
+
+.map-badge-radius {
+    background: rgba(239, 131, 84, 0.95);
+    color: white;
+}
+
+.map-badge-radius strong {
+    font-size: 1.1rem;
 }
 
 .map-overlay {
