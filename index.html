@@ -161,148 +161,39 @@
                 <p class="section-description">Proudly serving a 45-mile radius from our Centuria, WI location</p>
             </div>
             <div class="map-container">
-                <!-- Service Area Visualization -->
-                <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; display: block;">
-                    <!-- Background -->
-                    <rect width="800" height="600" fill="#e8edf2"/>
+                <div class="service-area-visual">
+                    <div class="service-radius-circle">
+                        <div class="radius-ring"></div>
+                        <div class="center-marker">
+                            <div class="marker-pin">📍</div>
+                            <div class="marker-label">
+                                <strong>St. Croix Materials</strong>
+                                <span>Centuria, WI</span>
+                            </div>
+                        </div>
+                        <div class="radius-label">45-Mile Service Radius</div>
+                    </div>
                     
-                    <!-- Grid pattern -->
-                    <defs>
-                        <pattern id="grid-pattern" width="40" height="40" patternUnits="userSpaceOnUse">
-                            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#cbd5e0" stroke-width="0.5"/>
-                        </pattern>
-                    </defs>
-                    <rect width="800" height="600" fill="url(#grid-pattern)"/>
-                    
-                    <!-- 45-mile service radius circle -->
-                    <circle cx="400" cy="300" r="180" 
-                        fill="rgba(239, 131, 84, 0.12)" 
-                        stroke="#ef8354" 
-                        stroke-width="3"
-                        stroke-dasharray="10 5">
-                        <animate attributeName="stroke-opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
-                    </circle>
-                    
-                    <!-- Outer glow for radius -->
-                    <circle cx="400" cy="300" r="190" 
-                        fill="none" 
-                        stroke="rgba(239, 131, 84, 0.2)" 
-                        stroke-width="6"/>
-                    
-                    <!-- Roads/highways (simplified) -->
-                    <line x1="0" y1="300" x2="800" y2="300" stroke="#94a3b8" stroke-width="2" opacity="0.4"/>
-                    <line x1="400" y1="0" x2="400" y2="600" stroke="#94a3b8" stroke-width="2" opacity="0.4"/>
-                    <line x1="200" y1="0" x2="600" y2="600" stroke="#94a3b8" stroke-width="1.5" opacity="0.3"/>
-                    
-                    <!-- Nearby towns -->
-                    <g class="town" transform="translate(310, 380)">
-                        <circle r="5" fill="#4f5d75" stroke="white" stroke-width="2"/>
-                        <text x="0" y="-12" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Rice Lake</text>
-                        <text x="0" y="25" text-anchor="middle" font-size="11" fill="#64748b">15 mi S</text>
-                    </g>
-                    
-                    <g class="town" transform="translate(520, 280)">
-                        <circle r="5" fill="#4f5d75" stroke="white" stroke-width="2"/>
-                        <text x="0" y="-12" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Spooner</text>
-                        <text x="0" y="25" text-anchor="middle" font-size="11" fill="#64748b">30 mi E</text>
-                    </g>
-                    
-                    <g class="town" transform="translate(260, 250)">
-                        <circle r="5" fill="#4f5d75" stroke="white" stroke-width="2"/>
-                        <text x="0" y="-12" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Cumberland</text>
-                        <text x="0" y="25" text-anchor="middle" font-size="11" fill="#64748b">18 mi W</text>
-                    </g>
-                    
-                    <g class="town" transform="translate(330, 340)">
-                        <circle r="5" fill="#4f5d75" stroke="white" stroke-width="2"/>
-                        <text x="0" y="-12" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Barron</text>
-                        <text x="0" y="25" text-anchor="middle" font-size="11" fill="#64748b">12 mi SW</text>
-                    </g>
-                    
-                    <g class="town" transform="translate(460, 340)">
-                        <circle r="5" fill="#4f5d75" stroke="white" stroke-width="2"/>
-                        <text x="0" y="-12" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Turtle Lake</text>
-                        <text x="0" y="25" text-anchor="middle" font-size="11" fill="#64748b">10 mi SE</text>
-                    </g>
-                    
-                    <g class="town" transform="translate(540, 340)">
-                        <circle r="5" fill="#4f5d75" stroke="white" stroke-width="2"/>
-                        <text x="0" y="-12" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Shell Lake</text>
-                        <text x="0" y="25" text-anchor="middle" font-size="11" fill="#64748b">22 mi E</text>
-                    </g>
-                    
-                    <g class="town" transform="translate(340, 240)">
-                        <circle r="5" fill="#4f5d75" stroke="white" stroke-width="2"/>
-                        <text x="0" y="-12" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Almena</text>
-                        <text x="0" y="25" text-anchor="middle" font-size="11" fill="#64748b">8 mi NW</text>
-                    </g>
-                    
-                    <g class="town" transform="translate(480, 240)">
-                        <circle r="5" fill="#4f5d75" stroke="white" stroke-width="2"/>
-                        <text x="0" y="-12" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Amery</text>
-                        <text x="0" y="25" text-anchor="middle" font-size="11" fill="#64748b">14 mi NE</text>
-                    </g>
-                    
-                    <g class="town" transform="translate(280, 320)">
-                        <circle r="5" fill="#4f5d75" stroke="white" stroke-width="2"/>
-                        <text x="0" y="-12" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Cameron</text>
-                        <text x="0" y="25" text-anchor="middle" font-size="11" fill="#64748b">16 mi W</text>
-                    </g>
-                    
-                    <g class="town" transform="translate(420, 190)">
-                        <circle r="5" fill="#4f5d75" stroke="white" stroke-width="2"/>
-                        <text x="0" y="-12" text-anchor="middle" font-size="13" font-weight="600" fill="#1a1a1a">Luck</text>
-                        <text x="0" y="25" text-anchor="middle" font-size="11" fill="#64748b">12 mi N</text>
-                    </g>
-                    
-                    <!-- Center location marker (Centuria) -->
-                    <g transform="translate(400, 300)">
-                        <!-- Pin shadow -->
-                        <ellipse cx="0" cy="15" rx="8" ry="3" fill="rgba(0,0,0,0.2)"/>
-                        
-                        <!-- Pin marker -->
-                        <path d="M0,-30 C-10,-30 -18,-22 -18,-12 C-18,-4 0,15 0,15 C0,15 18,-4 18,-12 C18,-22 10,-30 0,-30 Z" 
-                            fill="#ef8354" 
-                            stroke="#d96e3f" 
-                            stroke-width="2"
-                            filter="drop-shadow(0 4px 8px rgba(0,0,0,0.3))">
-                            <animateTransform
-                                attributeName="transform"
-                                type="translate"
-                                values="0,0; 0,-8; 0,0"
-                                dur="2s"
-                                repeatCount="indefinite"/>
-                        </path>
-                        
-                        <!-- Inner circle -->
-                        <circle cx="0" cy="-12" r="6" fill="white"/>
-                    </g>
-                    
-                    <!-- Location label -->
-                    <g transform="translate(400, 250)">
-                        <rect x="-70" y="-22" width="140" height="36" rx="6" fill="#2d3142"/>
-                        <path d="M0,14 L-8,8 L8,8 Z" fill="#2d3142"/>
-                        <text x="0" y="-8" text-anchor="middle" font-size="15" font-weight="700" fill="white">Centuria, WI</text>
-                        <text x="0" y="6" text-anchor="middle" font-size="11" fill="#ef8354">783 1st St</text>
-                    </g>
-                    
-                    <!-- Radius label -->
-                    <g transform="translate(670, 50)">
-                        <rect x="-100" y="0" width="120" height="44" rx="6" fill="rgba(239, 131, 84, 0.95)"/>
-                        <text x="-40" y="20" text-anchor="middle" font-size="14" font-weight="700" fill="white">45-Mile</text>
-                        <text x="-40" y="34" text-anchor="middle" font-size="12" font-weight="600" fill="white">Service Radius</text>
-                    </g>
-                    
-                    <!-- Compass rose -->
-                    <g transform="translate(70, 70)">
-                        <circle r="35" fill="white" stroke="#2d3142" stroke-width="2" opacity="0.9"/>
-                        <path d="M0,-28 L5,-10 L0,-15 L-5,-10 Z" fill="#ef8354"/>
-                        <text x="0" y="-18" text-anchor="middle" font-size="12" font-weight="700" fill="#2d3142">N</text>
-                        <text x="0" y="24" text-anchor="middle" font-size="10" fill="#64748b">S</text>
-                        <text x="20" y="5" text-anchor="middle" font-size="10" fill="#64748b">E</text>
-                        <text x="-20" y="5" text-anchor="middle" font-size="10" fill="#64748b">W</text>
-                    </g>
-                </svg>
+                    <div class="towns-served">
+                        <h3>Areas We Serve</h3>
+                        <div class="towns-grid">
+                            <div class="town-item">Almena</div>
+                            <div class="town-item">Amery</div>
+                            <div class="town-item">Balsam Lake</div>
+                            <div class="town-item">Barron</div>
+                            <div class="town-item">Cameron</div>
+                            <div class="town-item">Centuria</div>
+                            <div class="town-item">Cumberland</div>
+                            <div class="town-item">Frederic</div>
+                            <div class="town-item">Luck</div>
+                            <div class="town-item">Rice Lake</div>
+                            <div class="town-item">Shell Lake</div>
+                            <div class="town-item">Spooner</div>
+                            <div class="town-item">Turtle Lake</div>
+                        </div>
+                        <p class="coverage-note">Serving communities within a 45-mile radius of Centuria. Contact us to confirm service availability in your area.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
