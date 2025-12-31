@@ -437,98 +437,26 @@ section {
     background: white;
 }
 
-.map-container {
-    max-width: 1000px;
-    margin: 0 auto;
+.map-wrapper {
+    max-width: 1200px;
+    margin: 0 auto 3rem;
     border: 3px solid var(--primary);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    background: var(--off-white);
-    width: 100%;
+    border-radius: 8px;
     overflow: hidden;
 }
 
-.service-area-visual {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 500px;
-}
-
-.service-radius-circle {
-    background: linear-gradient(135deg, #2d3142 0%, #3d4255 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: 3rem;
-}
-
-.radius-ring {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    border: 3px dashed var(--secondary);
-    border-radius: 50%;
-    opacity: 0.3;
-    animation: pulse 3s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 0.3; }
-    50% { transform: scale(1.1); opacity: 0.5; }
-}
-
-.center-marker {
-    text-align: center;
-    z-index: 2;
-}
-
-.marker-pin {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    animation: bounce 2s ease-in-out infinite;
-}
-
-@keyframes bounce {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-.marker-label {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.marker-label strong {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    color: var(--secondary);
-    letter-spacing: 1px;
-}
-
-.marker-label span {
-    color: var(--light);
-    font-size: 1.1rem;
-}
-
-.radius-label {
-    position: absolute;
-    top: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--secondary);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
+.map-wrapper iframe {
+    display: block;
+    width: 100%;
 }
 
 .towns-served {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 3rem;
-    background: white;
-    overflow: hidden;
+    background: var(--off-white);
+    border-left: 4px solid var(--secondary);
 }
 
 .towns-served h3 {
@@ -541,19 +469,18 @@ section {
 
 .towns-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
     margin-bottom: 2rem;
 }
 
 .town-item {
-    background: var(--off-white);
-    padding: 0.75rem 1rem;
+    background: white;
+    padding: 1rem 1.5rem;
     border-left: 3px solid var(--secondary);
     font-weight: 500;
     transition: var(--transition);
-    font-size: 0.95rem;
-    word-wrap: break-word;
+    font-size: 1rem;
 }
 
 .town-item:hover {
@@ -564,12 +491,21 @@ section {
 
 .coverage-note {
     color: var(--text-light);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.7;
-    font-style: italic;
     margin-top: 1.5rem;
     padding-top: 1.5rem;
-    border-top: 2px solid var(--off-white);
+    border-top: 2px solid #e0e0e0;
+}
+
+.coverage-note a {
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.coverage-note a:hover {
+    text-decoration: underline;
 }
 
 /* Products Section */
@@ -1091,16 +1027,12 @@ a.contact-bar-value:hover {
         grid-template-columns: 1fr;
     }
     
-    .service-area-visual {
-        grid-template-columns: 1fr;
-    }
-    
-    .service-radius-circle {
-        min-height: 400px;
+    .towns-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .towns-served {
-        padding: 2.5rem;
+        padding: 2rem;
     }
     
     .about-stats {
@@ -1201,36 +1133,12 @@ a.contact-bar-value:hover {
         gap: 2rem;
     }
     
-    .service-area-visual {
-        grid-template-columns: 1fr;
+    .map-wrapper {
+        border-radius: 4px;
     }
     
-    .service-radius-circle {
-        min-height: 300px;
-        padding: 1.5rem;
-    }
-    
-    .radius-ring {
-        width: 200px;
-        height: 200px;
-    }
-    
-    .radius-label {
-        font-size: 0.8rem;
-        padding: 0.6rem 1.2rem;
-        top: 1rem;
-    }
-    
-    .marker-pin {
-        font-size: 2.5rem;
-    }
-    
-    .marker-label strong {
-        font-size: 1.1rem;
-    }
-    
-    .marker-label span {
-        font-size: 0.9rem;
+    .map-wrapper iframe {
+        height: 400px;
     }
     
     .towns-served {
@@ -1244,18 +1152,16 @@ a.contact-bar-value:hover {
     
     .towns-grid {
         grid-template-columns: 1fr;
-        gap: 0.5rem;
+        gap: 0.75rem;
     }
     
     .town-item {
-        padding: 0.6rem 0.9rem;
-        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
+        font-size: 0.95rem;
     }
     
     .coverage-note {
-        font-size: 0.85rem;
-        margin-top: 1.25rem;
-        padding-top: 1.25rem;
+        font-size: 0.9rem;
     }
     
     .calculator-form,
