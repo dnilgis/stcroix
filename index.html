@@ -5,13 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>St. Croix Materials - Concrete Pumping, Ready Mix, Aggregates & Ag Lime</title>
     <meta name="description" content="Professional concrete pumping services, ready mix concrete, sand, gravel, aggregates, and ag lime spreading serving Northwest Wisconsin. Quality materials, reliable delivery.">
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "St. Croix Materials",
+      "description": "Concrete pumping, ready mix, aggregates & ag lime solutions for Northwest Wisconsin",
+      "telephone": "+1-715-557-0563",
+      "email": "info@stcroixmaterials.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "783 1st St",
+        "addressLocality": "Centuria",
+        "addressRegion": "WI",
+        "postalCode": "54824",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "45.4508",
+        "longitude": "-92.5652"
+      },
+      "url": "https://stcroixmaterials.com",
+      "areaServed": {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": "45.4508",
+          "longitude": "-92.5652"
+        },
+        "geoRadius": "72420"
+      },
+      "priceRange": "$$",
+      "openingHours": "Mo-Fr 07:00-17:00",
+      "foundingDate": "2023"
+    }
+    </script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav class="navbar">
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="container nav-container">
             <div class="logo">
                 <span class="logo-text">ST. CROIX</span>
@@ -25,7 +67,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="tel:+17155570563" class="btn-contact">Call Now</a></li>
             </ul>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -34,14 +76,14 @@
     </nav>
 
     <header class="hero">
-        <canvas id="particles-canvas"></canvas>
+        <canvas id="particles-canvas" aria-hidden="true"></canvas>
         
         <div class="container hero-content">
             <div class="hero-badge-glow"></div>
             <div class="hero-badge">
-                <span class="badge-icon">⬢</span>
+                <span class="badge-icon" aria-hidden="true">⬢</span>
                 SINCE 2023
-                <span class="badge-icon">⬢</span>
+                <span class="badge-icon" aria-hidden="true">⬢</span>
             </div>
             <h1 class="hero-title">
                 <span class="title-line">CONCRETE</span>
@@ -54,359 +96,373 @@
                     <span>Get A Quote</span>
                 </a>
                 <a href="tel:+17155570563" class="btn btn-secondary btn-large">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                     </svg>
                     (715) 557-0563
                 </a>
             </div>
         </div>
-        <div class="hero-scroll">
+        <div class="hero-scroll" aria-hidden="true">
             <span>SCROLL</span>
             <div class="scroll-indicator"></div>
         </div>
     </header>
 
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">WHAT WE DO</span>
-                <h2 class="section-title">Our Services</h2>
+    <main id="main-content">
+        <section id="services" class="services">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">WHAT WE DO</span>
+                    <h2 class="section-title">Our Services</h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon" aria-hidden="true">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5"/>
+                                <path d="M2 12l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h3>Concrete Pumping</h3>
+                        <p>Professional concrete pumping services with modern boom and line pumps. Reach difficult areas with precision placement and efficient delivery.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon" aria-hidden="true">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M8 2v4M16 2v4M3.5 9.09h17M3 14.36h18M3 19.18h18M6.5 21h11c1.4 0 2-0.6 2-2V7.5c0-1.4-0.6-2-2-2h-11c-1.4 0-2 0.6-2 2V19c0 1.4 0.6 2 2 2z"/>
+                            </svg>
+                        </div>
+                        <h3>Ready Mix Concrete</h3>
+                        <p>Reliable on-time delivery of fresh concrete mixed to your exact specifications. Our modern fleet ensures quality arrives when you need it.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon" aria-hidden="true">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                                <polyline points="7.5 4.21 12 6.81 16.5 4.21"/>
+                                <polyline points="7.5 19.79 7.5 14.6 3 12"/>
+                                <polyline points="21 12 16.5 14.6 16.5 19.79"/>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                                <line x1="12" y1="22.08" x2="12" y2="12"/>
+                            </svg>
+                        </div>
+                        <h3>Sand, Gravel & Aggregates</h3>
+                        <p>High-quality sand, gravel, crushed stone, and aggregate materials for all construction needs. Consistent quality, competitive pricing, prompt delivery.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon" aria-hidden="true">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M12 6v6l4 2"/>
+                            </svg>
+                        </div>
+                        <h3>Ag Lime Spreading</h3>
+                        <p>Professional agricultural lime spreading services to improve soil pH and crop yields. Precise application for optimal field health.</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon" aria-hidden="true">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                                <polyline points="10 9 9 9 8 9"/>
+                            </svg>
+                        </div>
+                        <h3>Custom Mix Design</h3>
+                        <p>Expert consultation to develop the perfect concrete mix for your project requirements, climate conditions, and performance needs.</p>
+                    </div>
+                </div>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5"/>
-                            <path d="M2 12l10 5 10-5"/>
-                        </svg>
-                    </div>
-                    <h3>Concrete Pumping</h3>
-                    <p>Professional concrete pumping services with modern boom and line pumps. Reach difficult areas with precision placement and efficient delivery.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M8 2v4M16 2v4M3.5 9.09h17M3 14.36h18M3 19.18h18M6.5 21h11c1.4 0 2-0.6 2-2V7.5c0-1.4-0.6-2-2-2h-11c-1.4 0-2 0.6-2 2V19c0 1.4 0.6 2 2 2z"/>
-                        </svg>
-                    </div>
-                    <h3>Ready Mix Concrete</h3>
-                    <p>Reliable on-time delivery of fresh concrete mixed to your exact specifications. Our modern fleet ensures quality arrives when you need it.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                            <polyline points="7.5 4.21 12 6.81 16.5 4.21"/>
-                            <polyline points="7.5 19.79 7.5 14.6 3 12"/>
-                            <polyline points="21 12 16.5 14.6 16.5 19.79"/>
-                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                            <line x1="12" y1="22.08" x2="12" y2="12"/>
-                        </svg>
-                    </div>
-                    <h3>Sand, Gravel & Aggregates</h3>
-                    <p>High-quality sand, gravel, crushed stone, and aggregate materials for all construction needs. Consistent quality, competitive pricing, prompt delivery.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
-                        </svg>
-                    </div>
-                    <h3>Ag Lime Spreading</h3>
-                    <p>Professional agricultural lime spreading services to improve soil pH and crop yields. Precise application for optimal field health.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                            <polyline points="14 2 14 8 20 8"/>
-                            <line x1="16" y1="13" x2="8" y2="13"/>
-                            <line x1="16" y1="17" x2="8" y2="17"/>
-                            <polyline points="10 9 9 9 8 9"/>
-                        </svg>
-                    </div>
-                    <h3>Custom Mix Design</h3>
-                    <p>Expert consultation to develop the perfect concrete mix for your project requirements, climate conditions, and performance needs.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="service-area" class="service-area">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">WHERE WE SERVE</span>
-                <h2 class="section-title">Service Area</h2>
-                <p class="section-description">Proudly serving a 45-mile radius from our Centuria, WI location</p>
-            </div>
-            <div class="map-container">
-                <div class="service-area-visual">
-                    <div class="service-radius-circle">
-                        <div class="radius-ring"></div>
-                        <div class="center-marker">
-                            <div class="marker-pin">📍</div>
-                            <div class="marker-label">
-                                <strong>St. Croix Materials</strong>
-                                <span>Centuria, WI</span>
+        <section id="service-area" class="service-area">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">WHERE WE SERVE</span>
+                    <h2 class="section-title">Service Area</h2>
+                    <p class="section-description">Proudly serving a 45-mile radius from our Centuria, WI location</p>
+                </div>
+                <div class="map-container">
+                    <div class="service-area-visual">
+                        <div class="service-radius-circle">
+                            <div class="radius-ring" aria-hidden="true"></div>
+                            <div class="center-marker">
+                                <div class="marker-pin" aria-hidden="true">📍</div>
+                                <div class="marker-label">
+                                    <strong>St. Croix Materials</strong>
+                                    <span>Centuria, WI</span>
+                                </div>
                             </div>
+                            <div class="radius-label">45-Mile Service Radius</div>
                         </div>
-                        <div class="radius-label">45-Mile Service Radius</div>
-                    </div>
-                    
-                    <div class="towns-served">
-                        <h3>Areas We Serve</h3>
-                        <div class="towns-grid">
-                            <div class="town-item">Almena</div>
-                            <div class="town-item">Amery</div>
-                            <div class="town-item">Balsam Lake</div>
-                            <div class="town-item">Barron</div>
-                            <div class="town-item">Cameron</div>
-                            <div class="town-item">Centuria</div>
-                            <div class="town-item">Cumberland</div>
-                            <div class="town-item">Frederic</div>
-                            <div class="town-item">Luck</div>
-                            <div class="town-item">Rice Lake</div>
-                            <div class="town-item">Shell Lake</div>
-                            <div class="town-item">Spooner</div>
-                            <div class="town-item">Turtle Lake</div>
-                        </div>
-                        <p class="coverage-note">Serving communities within a 45-mile radius of Centuria. Contact us to confirm service availability in your area.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="products" class="products">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">MATERIALS</span>
-                <h2 class="section-title">Concrete Products</h2>
-            </div>
-            <div class="products-grid">
-                <div class="product-item">
-                    <div class="product-number">01</div>
-                    <h3>Standard Mix</h3>
-                    <p>General purpose concrete for foundations, slabs, and driveways</p>
-                    <div class="product-specs">
-                        <span>3000-4000 PSI</span>
-                    </div>
-                </div>
-                <div class="product-item">
-                    <div class="product-number">02</div>
-                    <h3>High-Strength</h3>
-                    <p>Heavy-duty applications requiring superior durability and load capacity</p>
-                    <div class="product-specs">
-                        <span>5000+ PSI</span>
-                    </div>
-                </div>
-                <div class="product-item">
-                    <div class="product-number">03</div>
-                    <h3>Fiber-Reinforced</h3>
-                    <p>Enhanced crack resistance and structural integrity for demanding projects</p>
-                    <div class="product-specs">
-                        <span>CUSTOM MIX</span>
-                    </div>
-                </div>
-                <div class="product-item">
-                    <div class="product-number">04</div>
-                    <h3>Air-Entrained</h3>
-                    <p>Freeze-thaw resistant for harsh weather climates</p>
-                    <div class="product-specs">
-                        <span>CLIMATE TESTED</span>
-                    </div>
-                </div>
-                <div class="product-item">
-                    <div class="product-number">05</div>
-                    <h3>Lightweight</h3>
-                    <p>Reduced structural load for specialized applications</p>
-                    <div class="product-specs">
-                        <span>SPECIALIZED</span>
-                    </div>
-                </div>
-                <div class="product-item">
-                    <div class="product-number">06</div>
-                    <h3>Decorative</h3>
-                    <p>Colored and textured concrete for architectural features</p>
-                    <div class="product-specs">
-                        <span>CUSTOM FINISH</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-text">
-                    <span class="section-label">OUR STORY</span>
-                    <h2 class="section-title">Building Foundations Since 2023</h2>
-                    <p>St. Croix Materials brings fresh energy and modern expertise to Northwest Wisconsin's concrete industry. Built on quality, reliability, and customer service, we're the trusted name for residential, commercial, and municipal projects throughout the region.</p>
-                    <p>Our professional concrete pumping services and state-of-the-art ready mix facilities ensure every project gets precision placement and the highest quality materials. From residential driveways to commercial foundations and municipal projects, we deliver expertise on every pour.</p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <div class="stat-number">100%</div>
-                            <div class="stat-label">Quality Guarantee</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">Same</div>
-                            <div class="stat-label">Day Delivery</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number">24/7</div>
-                            <div class="stat-label">Support Available</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <img src="concrete-pour.jpg" alt="St. Croix Materials concrete pour operation with pump truck" style="width: 100%; height: 100%; object-fit: cover; border: 3px solid var(--secondary);">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="calculator" class="calculator">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">GET AN ESTIMATE</span>
-                <h2 class="section-title">Concrete Calculator</h2>
-                <p class="section-description">Get an instant estimate for your project</p>
-            </div>
-            <div class="calculator-container">
-                <div class="calculator-form">
-                    <div class="calc-tabs">
-                        <button class="calc-tab active" data-tab="dimensions">Dimensions</button>
-                        <button class="calc-tab" data-tab="yards">Cubic Yards</button>
-                    </div>
-                    
-                    <div class="calc-tab-content active" id="dimensions-tab">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label>Length (feet)</label>
-                                <input type="number" id="calc-length" placeholder="0" min="0" step="0.5">
-                            </div>
-                            <div class="form-group">
-                                <label>Width (feet)</label>
-                                <input type="number" id="calc-width" placeholder="0" min="0" step="0.5">
-                            </div>
-                            <div class="form-group">
-                                <label>Depth (inches)</label>
-                                <input type="number" id="calc-depth" placeholder="4" min="0" step="0.5">
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="calc-tab-content" id="yards-tab">
-                        <div class="form-group">
-                            <label>Cubic Yards Needed</label>
-                            <input type="number" id="calc-yards" placeholder="0" min="0" step="0.5">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Mix Type</label>
-                        <select id="calc-mix">
-                            <option value="standard">Standard Mix (3000-4000 PSI) - $150/yd³</option>
-                            <option value="high-strength">High-Strength (5000+ PSI) - $180/yd³</option>
-                            <option value="fiber">Fiber-Reinforced - $170/yd³</option>
-                            <option value="air">Air-Entrained - $160/yd³</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>Delivery Address</label>
-                        <input type="text" id="calc-address" placeholder="Enter your address">
-                        <small class="help-text">We serve a 45-mile radius from Centuria, WI</small>
-                    </div>
-                    
-                    <button class="btn btn-primary btn-large" id="calc-estimate-btn">
-                        Calculate Estimate
-                    </button>
-                </div>
-                
-                <div class="calculator-results" id="calc-results">
-                    <div class="results-content">
-                        <div class="results-icon">📊</div>
-                        <h3>Your Estimate</h3>
-                        <p class="results-help">Enter your project details to see an estimate</p>
                         
-                        <div class="results-details" style="display: none;">
-                            <div class="result-item">
-                                <span class="result-label">Cubic Yards</span>
-                                <span class="result-value" id="result-yards">0</span>
+                        <div class="towns-served">
+                            <h3>Areas We Serve</h3>
+                            <div class="towns-grid">
+                                <div class="town-item">Almena</div>
+                                <div class="town-item">Amery</div>
+                                <div class="town-item">Balsam Lake</div>
+                                <div class="town-item">Barron</div>
+                                <div class="town-item">Cameron</div>
+                                <div class="town-item">Centuria</div>
+                                <div class="town-item">Cumberland</div>
+                                <div class="town-item">Frederic</div>
+                                <div class="town-item">Luck</div>
+                                <div class="town-item">Rice Lake</div>
+                                <div class="town-item">Shell Lake</div>
+                                <div class="town-item">Spooner</div>
+                                <div class="town-item">Turtle Lake</div>
                             </div>
-                            <div class="result-item">
-                                <span class="result-label">Mix Type</span>
-                                <span class="result-value" id="result-mix">-</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-label">Material Cost</span>
-                                <span class="result-value" id="result-material">$0</span>
-                            </div>
-                            <div class="result-item">
-                                <span class="result-label">Delivery Fee</span>
-                                <span class="result-value" id="result-delivery">$0</span>
-                            </div>
-                            <div class="result-divider"></div>
-                            <div class="result-item result-total">
-                                <span class="result-label">Estimated Total</span>
-                                <span class="result-value" id="result-total">$0</span>
-                            </div>
-                            
-                            <button class="btn btn-secondary btn-block" id="request-quote-btn">
-                                Call for Official Quote
-                            </button>
-                            
-                            <p class="disclaimer">*Estimate only. Final pricing may vary based on site conditions and availability.</p>
+                            <p class="coverage-note">Serving communities within a 45-mile radius of Centuria. Contact us to confirm service availability in your area.</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Bar -->
-    <section class="contact-bar">
-        <div class="container">
-            <div class="contact-bar-content">
-                <div class="contact-bar-item">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                    </svg>
-                    <div class="contact-bar-text">
-                        <span class="contact-bar-label">Call Us</span>
-                        <a href="tel:+17155570563" class="contact-bar-value">(715) 557-0563</a>
-                    </div>
+        <section id="products" class="products">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">MATERIALS</span>
+                    <h2 class="section-title">Concrete Products</h2>
                 </div>
-                
-                <div class="contact-bar-item">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                    <div class="contact-bar-text">
-                        <span class="contact-bar-label">Email Us</span>
-                        <a href="/cdn-cgi/l/email-protection#16747764646f5665627564797f6e7b776273647f777a653875797b" class="contact-bar-value"><span class="__cf_email__" data-cfemail="e98b889b9b90a99a9d8a9b86809184889d8c9b8088859ac78a8684">[email&#160;protected]</span></a>
+                <div class="products-grid">
+                    <div class="product-item">
+                        <div class="product-number" aria-hidden="true">01</div>
+                        <h3>Standard Mix</h3>
+                        <p>General purpose concrete for foundations, slabs, and driveways</p>
+                        <div class="product-specs">
+                            <span>3000-4000 PSI</span>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="contact-bar-item">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                    <div class="contact-bar-text">
-                        <span class="contact-bar-label">Visit Us</span>
-                        <span class="contact-bar-value">783 1st St, Centuria, WI 54824</span>
+                    <div class="product-item">
+                        <div class="product-number" aria-hidden="true">02</div>
+                        <h3>High-Strength</h3>
+                        <p>Heavy-duty applications requiring superior durability and load capacity</p>
+                        <div class="product-specs">
+                            <span>5000+ PSI</span>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <div class="product-number" aria-hidden="true">03</div>
+                        <h3>Fiber-Reinforced</h3>
+                        <p>Enhanced crack resistance and structural integrity for demanding projects</p>
+                        <div class="product-specs">
+                            <span>CUSTOM MIX</span>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <div class="product-number" aria-hidden="true">04</div>
+                        <h3>Air-Entrained</h3>
+                        <p>Freeze-thaw resistant for harsh weather climates</p>
+                        <div class="product-specs">
+                            <span>CLIMATE TESTED</span>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <div class="product-number" aria-hidden="true">05</div>
+                        <h3>Lightweight</h3>
+                        <p>Reduced structural load for specialized applications</p>
+                        <div class="product-specs">
+                            <span>SPECIALIZED</span>
+                        </div>
+                    </div>
+                    <div class="product-item">
+                        <div class="product-number" aria-hidden="true">06</div>
+                        <h3>Decorative</h3>
+                        <p>Colored and textured concrete for architectural features</p>
+                        <div class="product-specs">
+                            <span>CUSTOM FINISH</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <span class="section-label">OUR STORY</span>
+                        <h2 class="section-title">Building Foundations Since 2023</h2>
+                        <p>St. Croix Materials brings fresh energy and modern expertise to Northwest Wisconsin's concrete industry. Built on quality, reliability, and customer service, we're the trusted name for residential, commercial, and municipal projects throughout the region.</p>
+                        <p>Our professional concrete pumping services and state-of-the-art ready mix facilities ensure every project gets precision placement and the highest quality materials. From residential driveways to commercial foundations and municipal projects, we deliver expertise on every pour.</p>
+                        <div class="about-stats">
+                            <div class="stat">
+                                <div class="stat-number">100%</div>
+                                <div class="stat-label">Quality Guarantee</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">Same</div>
+                                <div class="stat-label">Day Delivery</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">24/7</div>
+                                <div class="stat-label">Support Available</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <div class="placeholder-image">
+                            <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21 15 16 10 5 21"/>
+                            </svg>
+                            <p>Concrete Pour Operation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="calculator" class="calculator">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label">GET AN ESTIMATE</span>
+                    <h2 class="section-title">Concrete Calculator</h2>
+                    <p class="section-description">Get an instant estimate for your project</p>
+                </div>
+                <div class="calculator-container">
+                    <div class="calculator-form">
+                        <div class="calc-tabs" role="tablist" aria-label="Calculator input method">
+                            <button class="calc-tab active" data-tab="dimensions" role="tab" aria-selected="true" aria-controls="dimensions-tab">Dimensions</button>
+                            <button class="calc-tab" data-tab="yards" role="tab" aria-selected="false" aria-controls="yards-tab">Cubic Yards</button>
+                        </div>
+                        
+                        <div class="calc-tab-content active" id="dimensions-tab" role="tabpanel" aria-labelledby="dimensions-tab">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="calc-length">Length (feet)</label>
+                                    <input type="number" id="calc-length" aria-label="Length in feet" placeholder="0" min="0" step="0.5">
+                                    <span class="error-message" id="length-error"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="calc-width">Width (feet)</label>
+                                    <input type="number" id="calc-width" aria-label="Width in feet" placeholder="0" min="0" step="0.5">
+                                    <span class="error-message" id="width-error"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="calc-depth">Depth (inches)</label>
+                                    <input type="number" id="calc-depth" aria-label="Depth in inches" placeholder="4" min="0" step="0.5">
+                                    <span class="error-message" id="depth-error"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="calc-tab-content" id="yards-tab" role="tabpanel" aria-labelledby="yards-tab">
+                            <div class="form-group">
+                                <label for="calc-yards">Cubic Yards Needed</label>
+                                <input type="number" id="calc-yards" aria-label="Cubic yards needed" placeholder="0" min="0" step="0.5">
+                                <span class="error-message" id="yards-error"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="calc-mix">Mix Type</label>
+                            <select id="calc-mix" aria-label="Select concrete mix type">
+                                <option value="standard">Standard Mix (3000-4000 PSI) - $150/yd³</option>
+                                <option value="high-strength">High-Strength (5000+ PSI) - $180/yd³</option>
+                                <option value="fiber">Fiber-Reinforced - $170/yd³</option>
+                                <option value="air">Air-Entrained - $160/yd³</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="calc-address">Delivery Address</label>
+                            <input type="text" id="calc-address" aria-label="Delivery address" placeholder="Enter your address">
+                            <small class="help-text">We serve a 45-mile radius from Centuria, WI</small>
+                            <span class="error-message" id="address-error"></span>
+                        </div>
+                        
+                        <button class="btn btn-primary btn-large" id="calc-estimate-btn">
+                            <span id="calc-btn-text">Calculate Estimate</span>
+                        </button>
+                    </div>
+                    
+                    <div class="calculator-results" id="calc-results">
+                        <div class="results-content">
+                            <div class="results-icon" aria-hidden="true">📊</div>
+                            <h3>Your Estimate</h3>
+                            <p class="results-help">Enter your project details to see an estimate</p>
+                            
+                            <div class="results-details" style="display: none;">
+                                <div class="result-item">
+                                    <span class="result-label">Cubic Yards</span>
+                                    <span class="result-value" id="result-yards">0</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">Mix Type</span>
+                                    <span class="result-value" id="result-mix">-</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">Material Cost</span>
+                                    <span class="result-value" id="result-material">$0</span>
+                                </div>
+                                <div class="result-item">
+                                    <span class="result-label">Delivery Fee</span>
+                                    <span class="result-value" id="result-delivery">$0</span>
+                                </div>
+                                <div class="result-divider"></div>
+                                <div class="result-item result-total">
+                                    <span class="result-label">Estimated Total</span>
+                                    <span class="result-value" id="result-total">$0</span>
+                                </div>
+                                
+                                <button class="btn btn-secondary btn-block" id="request-quote-btn">
+                                    Call for Official Quote
+                                </button>
+                                
+                                <p class="disclaimer">*Estimate only. Final pricing may vary based on site conditions and availability.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Bar -->
+        <section class="contact-bar">
+            <div class="container">
+                <div class="contact-bar-content">
+                    <div class="contact-bar-item">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <div class="contact-bar-text">
+                            <span class="contact-bar-label">Call Us</span>
+                            <a href="tel:+17155570563" class="contact-bar-value">(715) 557-0563</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-bar-item">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <div class="contact-bar-text">
+                            <span class="contact-bar-label">Email Us</span>
+                            <a href="mailto:info@stcroixmaterials.com" class="contact-bar-value">info@stcroixmaterials.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-bar-item">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <div class="contact-bar-text">
+                            <span class="contact-bar-label">Visit Us</span>
+                            <span class="contact-bar-value">783 1st St, Centuria, WI 54824</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer class="footer">
         <div class="container">
