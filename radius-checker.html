@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>SCM Radius Checker — Internal Tool</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23bf5630'/><text x='16' y='23' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='18' fill='white'>SC</text></svg>">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --white: #ffffff; --bg: #fafaf8; --text: #222; --body: #4a4a4a;
+            --muted: #888; --border: #e0ddd8; --accent: #bf5630; --accent-dark: #a44a28;
+            --green: #16a34a; --green-bg: #f0fdf4; --green-border: #bbf7d0;
+            --yellow: #ca8a04; --yellow-bg: #fefce8; --yellow-border: #fef08a;
+            --red: #dc2626; --red-bg: #fef2f2; --red-border: #fecaca;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 16px; line-height: 1.6; color: var(--body); background: var(--bg);
+            min-height: 100vh;
+        }
+        .header {
+            background: var(--text); color: #fff; padding: 16px 0;
+        }
+        .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+        .header-inner { display: flex; align-items: center; gap: 12px; }
+        .logo-mark {
+            font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 700;
+            color: #fff; background: var(--accent);
+            width: 36px; height: 36px; border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .header-text h1 { font-size: 1.1rem; font-weight: 700; line-height: 1.2; }
+        .header-text p { font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+
+        .main { padding: 32px 0 64px; }
+
+        .tool-card {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 12px; padding: 32px; margin-bottom: 24px;
+        }
+        .tool-card h2 { font-size: 1.3rem; font-weight: 800; color: var(--text); margin-bottom: 6px; }
+        .tool-card .subtitle { font-size: 0.9rem; color: var(--muted); margin-bottom: 24px; }
+
+        .input-group { display: flex; gap: 10px; margin-bottom: 8px; }
+        .input-group input {
+            flex: 1; font-family: inherit; font-size: 1rem;
+            padding: 14px 18px; border: 2px solid var(--border); border-radius: 8px;
+            outline: none; transition: border-color 0.2s; color: var(--text);
+        }
+        .input-group input:focus { border-color: var(--accent); }
+        .input-group input::placeholder { color: #bbb; }
+        .input-group button {
+            font-family: inherit; font-size: 0.95rem; font-weight: 700;
+            padding: 14px 28px; border-radius: 8px; border: none;
+            background: var(--accent); color: #fff; cursor: pointer;
+            transition: background 0.2s; white-space: nowrap;
+        }
+        .input-group button:hover { background: var(--accent-dark); }
+        .input-group button:disabled { background: #ccc; cursor: not-allowed; }
+        .input-hint { font-size: 0.8rem; color: var(--muted); margin-bottom: 0; }
+
+        /* Results */
+        .result { margin-top: 24px; display: none; }
+        .result.visible { display: block; }
+
+        .result-card {
+            border-radius: 10px; padding: 24px; border: 2px solid;
+        }
+        .result-card.go { background: var(--green-bg); border-color: var(--green-border); }
+        .result-card.maybe { background: var(--yellow-bg); border-color: var(--yellow-border); }
+        .result-card.nogo { background: var(--red-bg); border-color: var(--red-border); }
+
+        .result-status {
+            font-size: 1.4rem; font-weight: 800; margin-bottom: 8px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .result-card.go .result-status { color: var(--green); }
+        .result-card.maybe .result-status { color: var(--yellow); }
+        .result-card.nogo .result-status { color: var(--red); }
+
+        .result-location { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 16px; }
+
+        .result-distances {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px;
+        }
+        .dist-box {
+            background: rgba(255,255,255,0.7); border-radius: 8px; padding: 16px; text-align: center;
+        }
+        .dist-value { font-size: 1.8rem; font-weight: 800; color: var(--text); }
+        .dist-label { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-top: 2px; }
+        .dist-limit { font-size: 0.72rem; color: var(--muted); }
+
+        .result-note { font-size: 0.88rem; color: var(--body); line-height: 1.6; }
+
+        /* Quick buttons */
+        .quick-section { margin-top: 24px; }
+        .quick-section h3 { font-size: 0.85rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+        .quick-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+        .quick-btn {
+            font-family: inherit; font-size: 0.85rem; font-weight: 500;
+            padding: 8px 16px; border-radius: 100px;
+            background: var(--white); border: 1px solid var(--border);
+            color: var(--text); cursor: pointer; transition: all 0.2s;
+        }
+        .quick-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* Info section */
+        .info-card {
+            background: var(--white); border: 1px solid var(--border);
+            border-radius: 12px; padding: 24px 32px;
+        }
+        .info-card h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+        .info-card p { font-size: 0.9rem; color: var(--body); line-height: 1.7; margin-bottom: 10px; }
+        .info-card p:last-child { margin-bottom: 0; }
+        .info-card strong { color: var(--text); }
+
+        /* Loading */
+        .loading { display: none; margin-top: 24px; text-align: center; padding: 24px; }
+        .loading.visible { display: block; }
+        .loading-text { font-size: 0.9rem; color: var(--muted); }
+
+        /* History */
+        .history { margin-top: 32px; }
+        .history h3 { font-size: 0.85rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+        .history-list { list-style: none; }
+        .history-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 16px; border-bottom: 1px solid var(--border);
+            font-size: 0.88rem; cursor: pointer; transition: background 0.15s;
+        }
+        .history-item:hover { background: var(--bg); }
+        .history-item:last-child { border-bottom: none; }
+        .history-loc { font-weight: 500; color: var(--text); }
+        .history-dist { font-size: 0.82rem; }
+        .history-dist.go { color: var(--green); font-weight: 600; }
+        .history-dist.maybe { color: var(--yellow); font-weight: 600; }
+        .history-dist.nogo { color: var(--red); font-weight: 600; }
+        .history-empty { font-size: 0.85rem; color: var(--muted); font-style: italic; padding: 8px 0; }
+
+        @media (max-width: 600px) {
+            .tool-card { padding: 24px 20px; }
+            .input-group { flex-direction: column; }
+            .input-group button { width: 100%; }
+            .result-distances { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .dist-value { font-size: 1.4rem; }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Oswald:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="header">
+        <div class="wrap header-inner">
+            <div class="logo-mark">SCM</div>
+            <div class="header-text">
+                <h1>Radius Checker</h1>
+                <p>Internal Tool — Not Public</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="wrap">
+
+            <div class="tool-card">
+                <h2>Check Delivery Radius</h2>
+                <p class="subtitle">Enter a city, address, or job site location to check if it's within our DOT service radius from the Centuria plant.</p>
+
+                <div class="input-group">
+                    <input type="text" id="location-input" placeholder="e.g. Rice Lake, WI or 123 Main St, Barron" autocomplete="off">
+                    <button id="check-btn" onclick="checkLocation()">Check</button>
+                </div>
+                <p class="input-hint">City &amp; state, full address, or zip code all work.</p>
+
+                <div class="quick-section">
+                    <h3>Common Locations</h3>
+                    <div class="quick-btns">
+                        <button class="quick-btn" onclick="quickCheck('Balsam Lake, WI')">Balsam Lake</button>
+                        <button class="quick-btn" onclick="quickCheck('Barron, WI')">Barron</button>
+                        <button class="quick-btn" onclick="quickCheck('Rice Lake, WI')">Rice Lake</button>
+                        <button class="quick-btn" onclick="quickCheck('Spooner, WI')">Spooner</button>
+                        <button class="quick-btn" onclick="quickCheck('St. Croix Falls, WI')">St. Croix Falls</button>
+                        <button class="quick-btn" onclick="quickCheck('Cumberland, WI')">Cumberland</button>
+                        <button class="quick-btn" onclick="quickCheck('Amery, WI')">Amery</button>
+                        <button class="quick-btn" onclick="quickCheck('Frederic, WI')">Frederic</button>
+                        <button class="quick-btn" onclick="quickCheck('Shell Lake, WI')">Shell Lake</button>
+                        <button class="quick-btn" onclick="quickCheck('Turtle Lake, WI')">Turtle Lake</button>
+                        <button class="quick-btn" onclick="quickCheck('Luck, WI')">Luck</button>
+                        <button class="quick-btn" onclick="quickCheck('Siren, WI')">Siren</button>
+                        <button class="quick-btn" onclick="quickCheck('Hayward, WI')">Hayward</button>
+                        <button class="quick-btn" onclick="quickCheck('Eau Claire, WI')">Eau Claire</button>
+                        <button class="quick-btn" onclick="quickCheck('Minneapolis, MN')">Minneapolis</button>
+                    </div>
+                </div>
+
+                <div class="loading" id="loading">
+                    <p class="loading-text">Looking up location…</p>
+                </div>
+
+                <div class="result" id="result">
+                    <div class="result-card" id="result-card">
+                        <div class="result-status" id="result-status"></div>
+                        <div class="result-location" id="result-location"></div>
+                        <div class="result-distances">
+                            <div class="dist-box">
+                                <div class="dist-value" id="air-miles">—</div>
+                                <div class="dist-label">Air Miles</div>
+                                <div class="dist-limit">Limit: 72 mi</div>
+                            </div>
+                            <div class="dist-box">
+                                <div class="dist-value" id="land-miles">—</div>
+                                <div class="dist-label">Est. Road Miles</div>
+                                <div class="dist-limit">Limit: 60 mi</div>
+                            </div>
+                        </div>
+                        <div class="result-note" id="result-note"></div>
+                    </div>
+                </div>
+
+                <div class="history" id="history-section" style="display:none;">
+                    <h3>Recent Lookups</h3>
+                    <ul class="history-list" id="history-list"></ul>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3>About the Radius Limits</h3>
+                <p><strong>72 air miles</strong> — straight-line distance from the Centuria plant. This is the DOT short-haul exemption radius for ready-mix concrete vehicles.</p>
+                <p><strong>60 road miles</strong> — estimated driving distance. Road miles are typically 1.2–1.4× the air-mile distance depending on the route. This tool estimates road miles at 1.25× air miles for rural NW Wisconsin roads.</p>
+                <p>If a location is close to either limit, check the actual driving distance on Google Maps before committing. When in doubt, call the office at <strong>(715) 557-0563</strong>.</p>
+                <p><strong>Plant location:</strong> 783 1st St, Centuria, WI 54824 (45.4541°N, 92.1413°W)</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+    // Centuria plant coordinates
+    var PLANT_LAT = 45.4541;
+    var PLANT_LNG = -92.1413;
+
+    // Limits
+    var AIR_LIMIT = 72;    // air miles
+    var ROAD_LIMIT = 60;   // road/land miles
+    var ROAD_FACTOR = 1.25; // typical rural road multiplier
+
+    // History
+    var history = [];
+
+    // Haversine distance in miles
+    function haversine(lat1, lng1, lat2, lng2) {
+        var R = 3958.8; // Earth radius in miles
+        var dLat = (lat2 - lat1) * Math.PI / 180;
+        var dLng = (lng2 - lng1) * Math.PI / 180;
+        var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLng / 2) * Math.sin(dLng / 2);
+        return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function quickCheck(location) {
+        document.getElementById('location-input').value = location;
+        checkLocation();
+    }
+
+    function checkLocation() {
+        var input = document.getElementById('location-input').value.trim();
+        if (!input) return;
+
+        var btn = document.getElementById('check-btn');
+        var loading = document.getElementById('loading');
+        var result = document.getElementById('result');
+
+        btn.disabled = true;
+        btn.textContent = 'Checking…';
+        loading.classList.add('visible');
+        result.classList.remove('visible');
+
+        // Geocode using OpenStreetMap Nominatim
+        fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=us&q=' + encodeURIComponent(input))
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                loading.classList.remove('visible');
+                btn.disabled = false;
+                btn.textContent = 'Check';
+
+                if (!data || data.length === 0) {
+                    showError('Could not find that location. Try a more specific address or add the state (e.g. "Barron, WI").');
+                    return;
+                }
+
+                var loc = data[0];
+                var lat = parseFloat(loc.lat);
+                var lng = parseFloat(loc.lon);
+                var name = loc.display_name;
+
+                // Shorten display name
+                var parts = name.split(', ');
+                var shortName = parts.length > 3 ? parts.slice(0, 3).join(', ') : name;
+
+                var airMiles = haversine(PLANT_LAT, PLANT_LNG, lat, lng);
+                var roadMiles = airMiles * ROAD_FACTOR;
+
+                showResult(shortName, airMiles, roadMiles);
+                addHistory(shortName, airMiles, roadMiles);
+            })
+            .catch(function(err) {
+                loading.classList.remove('visible');
+                btn.disabled = false;
+                btn.textContent = 'Check';
+                showError('Network error — check your connection and try again.');
+            });
+    }
+
+    function showResult(location, airMiles, roadMiles) {
+        var result = document.getElementById('result');
+        var card = document.getElementById('result-card');
+        var status = document.getElementById('result-status');
+        var locEl = document.getElementById('result-location');
+        var airEl = document.getElementById('air-miles');
+        var roadEl = document.getElementById('land-miles');
+        var noteEl = document.getElementById('result-note');
+
+        airEl.textContent = airMiles.toFixed(1);
+        roadEl.textContent = roadMiles.toFixed(1);
+        locEl.textContent = location;
+
+        // Determine status
+        var airOk = airMiles <= AIR_LIMIT;
+        var roadOk = roadMiles <= ROAD_LIMIT;
+        var airClose = airMiles > AIR_LIMIT * 0.85 && airMiles <= AIR_LIMIT;
+        var roadClose = roadMiles > ROAD_LIMIT * 0.85 && roadMiles <= ROAD_LIMIT;
+
+        card.className = 'result-card';
+
+        if (airOk && roadOk && !airClose && !roadClose) {
+            card.classList.add('go');
+            status.innerHTML = '&#10003; Good to Go';
+            noteEl.textContent = 'This location is within both air-mile and road-mile limits. Clear to dispatch.';
+        } else if (airOk && roadOk && (airClose || roadClose)) {
+            card.classList.add('maybe');
+            status.innerHTML = '&#9888; Within Limits — But Close';
+            noteEl.textContent = 'Technically within limits, but cutting it close. Verify actual driving distance on Google Maps before dispatching. Factor in job site access roads.';
+        } else if (airOk && !roadOk) {
+            card.classList.add('maybe');
+            status.innerHTML = '&#9888; Air OK / Road Over';
+            noteEl.textContent = 'Under the 72 air-mile limit but the estimated road distance exceeds 60 miles. Check actual driving distance — some routes may be shorter than the estimate.';
+        } else {
+            card.classList.add('nogo');
+            status.innerHTML = '&#10007; Outside Radius';
+            if (airMiles <= AIR_LIMIT * 1.1) {
+                noteEl.textContent = 'Just outside the air-mile limit (' + airMiles.toFixed(1) + ' vs. 72). If the customer really needs it, check with management — might be able to make it work with driver scheduling.';
+            } else {
+                noteEl.textContent = 'This location is ' + airMiles.toFixed(0) + ' air miles from the plant — well beyond the 72-mile DOT radius. Cannot service under short-haul exemption.';
+            }
+        }
+
+        result.classList.add('visible');
+
+        // Scroll to result on mobile
+        if (window.innerWidth < 640) {
+            result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+
+    function showError(message) {
+        var result = document.getElementById('result');
+        var card = document.getElementById('result-card');
+        var status = document.getElementById('result-status');
+        var locEl = document.getElementById('result-location');
+        var noteEl = document.getElementById('result-note');
+
+        card.className = 'result-card nogo';
+        status.innerHTML = '&#9888; Not Found';
+        locEl.textContent = '';
+        document.getElementById('air-miles').textContent = '—';
+        document.getElementById('land-miles').textContent = '—';
+        noteEl.textContent = message;
+        result.classList.add('visible');
+    }
+
+    function addHistory(location, airMiles, roadMiles) {
+        // Remove duplicate
+        history = history.filter(function(h) { return h.location !== location; });
+
+        var airOk = airMiles <= AIR_LIMIT;
+        var roadOk = roadMiles <= ROAD_LIMIT;
+        var cls = (airOk && roadOk) ? 'go' : (airOk ? 'maybe' : 'nogo');
+
+        history.unshift({ location: location, airMiles: airMiles, roadMiles: roadMiles, cls: cls });
+        if (history.length > 15) history.pop();
+
+        renderHistory();
+    }
+
+    function renderHistory() {
+        var section = document.getElementById('history-section');
+        var list = document.getElementById('history-list');
+        if (history.length === 0) { section.style.display = 'none'; return; }
+
+        section.style.display = 'block';
+        list.innerHTML = '';
+        history.forEach(function(h) {
+            var li = document.createElement('li');
+            li.className = 'history-item';
+            li.innerHTML = '<span class="history-loc">' + h.location + '</span>' +
+                '<span class="history-dist ' + h.cls + '">' + h.airMiles.toFixed(1) + ' air mi</span>';
+            li.addEventListener('click', function() {
+                document.getElementById('location-input').value = h.location;
+                checkLocation();
+            });
+            list.appendChild(li);
+        });
+    }
+
+    // Enter key
+    document.getElementById('location-input').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') checkLocation();
+    });
+
+    // Auto-focus
+    document.getElementById('location-input').focus();
+    </script>
+</body>
+</html>
