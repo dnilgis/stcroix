@@ -2,6 +2,39 @@
    ST. CROIX MATERIALS
    =========================== */
 
+var INITIAL_SHOW = 12;
+var galleryExpanded = false;
+
+// ——— Build Filters with Counts ———
+(function() {
+    if (typeof GALLERY === 'undefined') return;
+    var filtersEl = document.getElementById('filters');
+    if (!filtersEl) return;
+
+    // Count categories
+    var counts = { all: GALLERY.length };
+    GALLERY.forEach(function(p) {
+        counts[p.category] = (counts[p.category] || 0) + 1;
+    });
+
+    var categories = [
+        { key: 'all', label: 'All' },
+        { key: 'pumping', label: 'Pumping' },
+        { key: 'flatwork', label: 'Flatwork' },
+        { key: 'residential', label: 'Residential' },
+        { key: 'commercial', label: 'Commercial' },
+        { key: 'agricultural', label: 'Agricultural' }
+    ];
+
+    categories.forEach(function(cat) {
+        var btn = document.createElement('button');
+        btn.className = 'filter-btn' + (cat.key === 'all' ? ' active' : '');
+        btn.setAttribute('data-filter', cat.key);
+        btn.innerHTML = cat.label + ' <span class="filter-count">(' + (counts[cat.key] || 0) + ')</span>';
+        filtersEl.appendChild(btn);
+    });
+})();
+
 // ——— Gallery ———
 (function() {
     if (typeof GALLERY === 'undefined') return;
@@ -10,6 +43,7 @@
     GALLERY.forEach(function(photo, i) {
         var item = document.createElement('div');
         item.className = 'gal-item';
+        if (i >= INITIAL_SHOW) item.classList.add('gallery-overflow');
         item.setAttribute('data-index', i);
         item.setAttribute('data-cat', photo.category);
         var img = document.createElement('img');
@@ -25,6 +59,28 @@
         grid.appendChild(item);
         item.addEventListener('click', function() { openLightbox(i); });
     });
+
+    // Update show more button text
+    var moreBtn = document.getElementById('show-more-btn');
+    if (moreBtn && GALLERY.length > INITIAL_SHOW) {
+        moreBtn.textContent = 'Show All ' + GALLERY.length + ' Photos';
+    } else if (moreBtn) {
+        document.getElementById('gallery-more-wrap').classList.add('gallery-hidden');
+    }
+})();
+
+// ——— Show More ———
+(function() {
+    var moreBtn = document.getElementById('show-more-btn');
+    var moreWrap = document.getElementById('gallery-more-wrap');
+    if (!moreBtn) return;
+    moreBtn.addEventListener('click', function() {
+        galleryExpanded = true;
+        document.querySelectorAll('.gal-item.gallery-overflow').forEach(function(item) {
+            item.classList.add('gallery-expanded');
+        });
+        moreWrap.classList.add('gallery-hidden');
+    });
 })();
 
 // ——— Filters ———
@@ -36,7 +92,14 @@ if (filtersEl) {
         document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
         btn.classList.add('active');
         var cat = btn.getAttribute('data-filter');
+
+        // When filtering, expand all photos
+        galleryExpanded = true;
+        var moreWrap = document.getElementById('gallery-more-wrap');
+        if (moreWrap) moreWrap.classList.add('gallery-hidden');
+
         document.querySelectorAll('.gal-item').forEach(function(item) {
+            item.classList.add('gallery-expanded');
             if (cat === 'all' || item.getAttribute('data-cat') === cat) {
                 item.classList.remove('hidden');
             } else {
@@ -98,6 +161,22 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'ArrowLeft') prevPhoto();
 });
 
+// ——— Touch Swipe on Lightbox ———
+(function() {
+    var startX = 0, startY = 0, diffX = 0;
+    lightbox.addEventListener('touchstart', function(e) {
+        startX = e.changedTouches[0].screenX;
+        startY = e.changedTouches[0].screenY;
+    }, { passive: true });
+    lightbox.addEventListener('touchend', function(e) {
+        diffX = e.changedTouches[0].screenX - startX;
+        var diffY = e.changedTouches[0].screenY - startY;
+        if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
+            if (diffX > 0) { prevPhoto(); } else { nextPhoto(); }
+        }
+    }, { passive: true });
+})();
+
 // ——— Scroll Reveal ———
 var revealObs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
@@ -138,6 +217,19 @@ var counterObs = new IntersectionObserver(function(entries) {
 }, { threshold: 0.5 });
 document.querySelectorAll('[data-count]').forEach(function(el) { counterObs.observe(el); });
 
+// ——— Back to Top ———
+(function() {
+    var btn = document.getElementById('btn-top');
+    if (!btn) return;
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 600) { btn.classList.add('visible'); }
+        else { btn.classList.remove('visible'); }
+    }, { passive: true });
+    btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+
 // ——— Weather ———
 (function() {
     try {
@@ -154,14 +246,11 @@ document.querySelectorAll('[data-count]').forEach(function(el) { counterObs.obse
 
 // ——— Geolocation Banner ———
 (function() {
-    // Don't show twice per session
     if (sessionStorage.getItem('scm-geo-shown')) return;
 
-    // Centuria, WI coordinates
     var BASE_LAT = 45.4541;
     var BASE_LNG = -92.1413;
 
-    // Haversine distance in miles
     function distanceMi(lat1, lng1, lat2, lng2) {
         var R = 3959;
         var dLat = (lat2 - lat1) * Math.PI / 180;
@@ -175,35 +264,18 @@ document.querySelectorAll('[data-count]').forEach(function(el) { counterObs.obse
     function getMessage(miles, city) {
         var loc = city ? city : 'your area';
         if (miles <= 45) {
-            return {
-                icon: '🟢',
-                text: 'Great news — we deliver to ' + loc + '! Give us a call for a free estimate.',
-                cta: true
-            };
+            return { icon: '\uD83D\uDFE2', text: 'Great news \u2014 we deliver to ' + loc + '! Give us a call for a free estimate.', cta: true };
         } else if (miles <= 60) {
-            return {
-                icon: '🟡',
-                text: loc + ' is just outside our usual range, but call us — we can probably make it work!',
-                cta: true
-            };
+            return { icon: '\uD83D\uDFE1', text: loc + ' is just outside our usual range, but call us \u2014 we can probably make it work!', cta: true };
         } else if (miles <= 150) {
-            return {
-                icon: '🟠',
-                text: loc + ' is about ' + Math.round(miles) + ' miles out — that\'s a haul, but reach out if you need us.',
-                cta: true
-            };
+            return { icon: '\uD83D\uDFE0', text: loc + ' is about ' + Math.round(miles) + ' miles out \u2014 that\'s a haul, but reach out if you need us.', cta: true };
         } else {
-            return {
-                icon: '📍',
-                text: 'Looks like you\'re about ' + Math.round(miles) + ' miles from us in Centuria, WI — eek, that\'s a haul! But if you\'re ever in Northwest Wisconsin, we\'d love to help.',
-                cta: false
-            };
+            return { icon: '\uD83D\uDCCD', text: 'Looks like you\'re about ' + Math.round(miles) + ' miles from us in Centuria, WI \u2014 eek, that\'s a haul! But if you\'re ever in Northwest Wisconsin, we\'d love to help.', cta: false };
         }
     }
 
     function showBanner(msg) {
         sessionStorage.setItem('scm-geo-shown', '1');
-
         var banner = document.createElement('div');
         banner.className = 'geo-banner';
         banner.innerHTML =
@@ -213,22 +285,14 @@ document.querySelectorAll('[data-count]').forEach(function(el) { counterObs.obse
                 (msg.cta ? '<a href="tel:7155570563" class="geo-cta">Call Now</a>' : '') +
                 '<button class="geo-close" aria-label="Close">&times;</button>' +
             '</div>';
-
         document.body.appendChild(banner);
-
-        // Trigger animation
         requestAnimationFrame(function() {
-            requestAnimationFrame(function() {
-                banner.classList.add('geo-visible');
-            });
+            requestAnimationFrame(function() { banner.classList.add('geo-visible'); });
         });
-
         banner.querySelector('.geo-close').addEventListener('click', function() {
             banner.classList.remove('geo-visible');
             setTimeout(function() { banner.remove(); }, 400);
         });
-
-        // Auto dismiss after 12s
         setTimeout(function() {
             if (banner.parentNode) {
                 banner.classList.remove('geo-visible');
@@ -237,8 +301,6 @@ document.querySelectorAll('[data-count]').forEach(function(el) { counterObs.obse
         }, 12000);
     }
 
-    // Try IP-based geolocation (no permission needed)
-    // Delay so it doesn't compete with initial page load
     setTimeout(function() {
         fetch('https://ipapi.co/json/')
             .then(function(r) { return r.json(); })
@@ -247,12 +309,8 @@ document.querySelectorAll('[data-count]').forEach(function(el) { counterObs.obse
                     var miles = distanceMi(d.latitude, d.longitude, BASE_LAT, BASE_LNG);
                     var city = d.city || '';
                     if (d.region) city += (city ? ', ' : '') + d.region;
-                    var msg = getMessage(miles, city);
-                    showBanner(msg);
+                    showBanner(getMessage(miles, city));
                 }
-            })
-            .catch(function() {
-                // Silently fail — no banner is fine
-            });
+            }).catch(function() {});
     }, 2500);
 })();

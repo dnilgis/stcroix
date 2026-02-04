@@ -40,7 +40,11 @@
     <div class="topbar">
         <div class="wrap topbar-inner">
             <span class="topbar-loc" id="topbar-loc">Centuria, WI</span>
-            <a href="tel:7155570563" class="topbar-phone">Call Us: (715) 557-0563</a>
+            <div class="topbar-right">
+                <a href="sms:7155570563" class="topbar-link">Text Us</a>
+                <span class="topbar-divider">|</span>
+                <a href="tel:7155570563" class="topbar-phone">Call: (715) 557-0563</a>
+            </div>
         </div>
     </div>
 
@@ -117,15 +121,11 @@
                 <h2>Our Work</h2>
                 <p class="section-desc">Real projects from across Northwest Wisconsin.</p>
             </div>
-            <div class="filters" id="filters" data-reveal>
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="pumping">Pumping</button>
-                <button class="filter-btn" data-filter="flatwork">Flatwork</button>
-                <button class="filter-btn" data-filter="residential">Residential</button>
-                <button class="filter-btn" data-filter="commercial">Commercial</button>
-                <button class="filter-btn" data-filter="agricultural">Agricultural</button>
-            </div>
+            <div class="filters" id="filters" data-reveal></div>
             <div class="gallery" id="gallery-grid" data-reveal></div>
+            <div class="gallery-more-wrap" id="gallery-more-wrap" data-reveal>
+                <button class="btn btn-show-more" id="show-more-btn">Show All Photos</button>
+            </div>
         </div>
     </section>
 
@@ -141,7 +141,7 @@
         </div>
     </div>
 
-    <!-- Service Area — stats folded in as a simple row -->
+    <!-- Service Area -->
     <section class="section" id="area">
         <div class="wrap">
             <div class="section-top" data-reveal>
@@ -153,13 +153,25 @@
                 <div class="hl">Same-day delivery available</div>
                 <div class="hl">Free estimates on every project</div>
             </div>
-            <div class="towns" data-reveal>
-                <span>Almena</span><span>Amery</span><span>Balsam Lake</span><span>Barron</span>
-                <span>Cameron</span><span>Centuria</span><span>Cumberland</span><span>Frederic</span>
-                <span>Luck</span><span>Rice Lake</span><span>Shell Lake</span><span>Spooner</span>
-                <span>St. Croix Falls</span><span>Turtle Lake</span>
+            <div class="area-grid" data-reveal>
+                <div class="area-towns">
+                    <div class="towns">
+                        <span>Almena</span><span>Amery</span><span>Balsam Lake</span><span>Barron</span>
+                        <span>Cameron</span><span>Centuria</span><span>Cumberland</span><span>Frederic</span>
+                        <span>Luck</span><span>Rice Lake</span><span>Shell Lake</span><span>Spooner</span>
+                        <span>St. Croix Falls</span><span>Turtle Lake</span>
+                    </div>
+                    <p class="muted">Don't see your town? Give us a call — we likely serve your area.</p>
+                </div>
+                <div class="area-map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d362191.8844!2d-92.5!3d45.45!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x52b28b8f8b2c0001%3A0x1234567890abcdef!2sCenturia%2C+WI+54824!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+                        width="100%" height="300" style="border:0; border-radius:10px;"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="St. Croix Materials service area map centered on Centuria, Wisconsin">
+                    </iframe>
+                </div>
             </div>
-            <p class="muted" data-reveal>Don't see your town? Give us a call — we likely serve your area.</p>
         </div>
     </section>
 
@@ -181,6 +193,10 @@
                     <a href="tel:7155570563" class="info-phone">(715) 557-0563</a>
                 </div>
                 <div class="info-row">
+                    <span class="info-label">Text</span>
+                    <a href="sms:7155570563" class="info-text">(715) 557-0563</a>
+                </div>
+                <div class="info-row">
                     <span class="info-label">Services</span>
                     <span>Ready Mix, Concrete Pumping, Aggregates, Ag Lime</span>
                 </div>
@@ -196,8 +212,11 @@
     <section class="cta">
         <div class="wrap cta-inner" data-reveal>
             <h2>Ready to start your project?</h2>
-            <p>Call us today for a free estimate on ready mix, pumping, or aggregates.</p>
-            <a href="tel:7155570563" class="btn btn-white">Call (715) 557-0563</a>
+            <p>Call or text us today for a free estimate on ready mix, pumping, or aggregates.</p>
+            <div class="cta-btns">
+                <a href="tel:7155570563" class="btn btn-white">Call (715) 557-0563</a>
+                <a href="sms:7155570563" class="btn btn-outline">Text Us</a>
+            </div>
         </div>
     </section>
 
@@ -217,6 +236,7 @@
                 </div>
                 <div class="footer-contact">
                     <a href="tel:7155570563">(715) 557-0563</a>
+                    <a href="sms:7155570563" class="footer-text">Text Us</a>
                     <span>783 1st St, Centuria, WI 54824</span>
                 </div>
             </div>
@@ -225,6 +245,14 @@
             </div>
         </div>
     </footer>
+
+    <!-- Mobile floating call button -->
+    <a href="tel:7155570563" class="fab-call" id="fab-call" aria-label="Call St. Croix Materials">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+    </a>
+
+    <!-- Back to top -->
+    <button class="btn-top" id="btn-top" aria-label="Back to top">&#8593;</button>
 
     <script src="photos.js"></script>
     <script src="script.js"></script>
