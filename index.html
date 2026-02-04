@@ -5,24 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>St. Croix Materials | Concrete Pumping & Ready Mix | Centuria, WI</title>
     <meta name="description" content="Concrete pumping and ready mix delivery serving Northwest Wisconsin. Aggregates, sand, gravel, and ag lime spreading within 45 miles of Centuria, WI. Call (715) 557-0563.">
-    <meta name="keywords" content="concrete pumping, ready mix concrete, Centuria WI, Northwest Wisconsin, aggregates, sand, gravel, ag lime, concrete delivery, Barron County, Polk County">
+    <meta name="keywords" content="concrete pumping, ready mix concrete, Centuria WI, Northwest Wisconsin, aggregates, sand, gravel, ag lime, concrete delivery, Barron County, Polk County, Burnett County">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://stcroixmaterials.com">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23bf5630'/><text x='16' y='23' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='18' fill='white'>SC</text></svg>">
 
-    <!-- Open Graph -->
     <meta property="og:title" content="St. Croix Materials | Concrete Pumping & Ready Mix">
     <meta property="og:description" content="Concrete pumping, ready mix, aggregates & ag lime serving Northwest Wisconsin. Call (715) 557-0563.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://stcroixmaterials.com">
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Schema.org Local Business -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -31,33 +28,17 @@
         "description": "Concrete pumping, ready mix concrete, aggregates, and ag lime services in Northwest Wisconsin.",
         "url": "https://stcroixmaterials.com",
         "telephone": "+1-715-557-0563",
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "783 1st St",
-            "addressLocality": "Centuria",
-            "addressRegion": "WI",
-            "postalCode": "54824",
-            "addressCountry": "US"
-        },
-        "areaServed": {
-            "@type": "GeoCircle",
-            "geoMidpoint": {
-                "@type": "GeoCoordinates",
-                "latitude": 45.4541,
-                "longitude": -92.1413
-            },
-            "geoRadius": "72420"
-        },
+        "address": { "@type": "PostalAddress", "streetAddress": "783 1st St", "addressLocality": "Centuria", "addressRegion": "WI", "postalCode": "54824", "addressCountry": "US" },
+        "areaServed": { "@type": "GeoCircle", "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 45.4541, "longitude": -92.1413 }, "geoRadius": "72420" },
         "serviceType": ["Concrete Pumping", "Ready Mix Concrete", "Aggregates", "Ag Lime Spreading"]
     }
     </script>
 </head>
 <body>
 
-    <!-- Top Bar -->
     <div class="top-bar">
         <div class="container top-bar-inner">
-            <span class="top-bar-loc">783 1st St, Centuria, WI</span>
+            <span class="top-bar-loc" id="top-bar-loc">783 1st St, Centuria, WI</span>
             <a href="tel:7155570563" class="top-bar-phone">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 (715) 557-0563
@@ -65,26 +46,20 @@
         </div>
     </div>
 
-    <!-- Nav -->
     <nav class="nav" id="nav">
         <div class="container nav-inner">
-            <a href="#" class="logo">
-                <span class="logo-main">ST. CROIX</span>
-                <span class="logo-sub">MATERIALS</span>
-            </a>
+            <a href="#" class="logo"><span class="logo-main">ST. CROIX</span><span class="logo-sub">MATERIALS</span></a>
             <div class="nav-links" id="nav-links">
                 <a href="#services">Services</a>
+                <a href="#estimator">Estimator</a>
                 <a href="#area">Service Area</a>
                 <a href="#about">About</a>
                 <a href="tel:7155570563" class="nav-cta">Call Now</a>
             </div>
-            <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
-                <span></span><span></span><span></span>
-            </button>
+            <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
-    <!-- Hero -->
     <header class="hero">
         <div class="hero-bg"></div>
         <div class="container hero-content">
@@ -93,105 +68,93 @@
             <h1 class="hero-title">Concrete Pumping<br><span class="accent">&amp; Ready Mix</span></h1>
             <p class="hero-sub">Professional concrete services for residential, commercial, and municipal projects. On time. Every time.</p>
             <div class="hero-actions">
-                <a href="tel:7155570563" class="btn btn-primary">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                    (715) 557-0563
-                </a>
-                <a href="#services" class="btn btn-ghost">Our Services</a>
+                <a href="tel:7155570563" class="btn btn-primary"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(715) 557-0563</a>
+                <a href="#estimator" class="btn btn-ghost">Estimate Your Project</a>
             </div>
         </div>
     </header>
 
-    <!-- Services -->
     <section class="services" id="services">
         <div class="container">
-            <div class="section-head" data-reveal>
-                <p class="section-tag">What We Do</p>
-                <h2 class="section-title">Our Services</h2>
-            </div>
+            <div class="section-head" data-reveal><p class="section-tag">What We Do</p><h2 class="section-title">Our Services</h2></div>
             <div class="services-grid">
-                <div class="service-card" data-reveal>
-                    <span class="service-num">01</span>
-                    <h3>Concrete Pumping</h3>
-                    <p>Boom and line pump services for precision placement. We reach the tough spots so your project stays on schedule.</p>
+                <div class="service-card" data-reveal><span class="service-num">01</span><h3>Concrete Pumping</h3><p>Boom and line pump services for precision placement. We reach the tough spots so your project stays on schedule.</p></div>
+                <div class="service-card" data-reveal><span class="service-num">02</span><h3>Ready Mix Concrete</h3><p>Fresh concrete mixed to your specifications and delivered on time. From driveways to commercial foundations.</p></div>
+                <div class="service-card" data-reveal><span class="service-num">03</span><h3>Aggregates &amp; Sand</h3><p>Crushed rock, gravel, sand, and road base for construction, landscaping, and site work.</p></div>
+                <div class="service-card" data-reveal><span class="service-num">04</span><h3>Ag Lime Spreading</h3><p>Agricultural lime application to improve soil pH and crop yields across Northwest Wisconsin farmland.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="estimator" id="estimator">
+        <div class="container">
+            <div class="section-head" data-reveal><p class="section-tag">Plan Your Project</p><h2 class="section-title">Concrete Estimator</h2></div>
+            <div class="est-layout" data-reveal>
+                <div class="est-controls">
+                    <div class="est-types" id="est-types">
+                        <button class="type-btn active" data-type="slab">Slab</button>
+                        <button class="type-btn" data-type="driveway">Driveway</button>
+                        <button class="type-btn" data-type="sidewalk">Sidewalk</button>
+                        <button class="type-btn" data-type="foundation">Foundation</button>
+                    </div>
+                    <div class="slider-group">
+                        <label><span class="slider-label">Length</span><span class="slider-value" id="len-val">20 ft</span></label>
+                        <input type="range" id="slab-length" min="4" max="80" value="20" class="custom-range">
+                    </div>
+                    <div class="slider-group">
+                        <label><span class="slider-label">Width</span><span class="slider-value" id="wid-val">12 ft</span></label>
+                        <input type="range" id="slab-width" min="4" max="40" value="12" class="custom-range">
+                    </div>
+                    <div class="slider-group">
+                        <label><span class="slider-label">Depth</span><span class="slider-value" id="dep-val">4 in</span></label>
+                        <input type="range" id="slab-depth" min="2" max="12" value="4" class="custom-range">
+                    </div>
+                    <div class="est-results">
+                        <div class="result-item"><span class="result-num" id="result-yards">2.96</span><span class="result-unit">Cubic Yards</span></div>
+                        <div class="result-item"><span class="result-num" id="result-trucks">1</span><span class="result-unit">Truck Loads</span></div>
+                        <div class="result-item"><span class="result-num" id="result-weight">8,889</span><span class="result-unit">Pounds</span></div>
+                    </div>
+                    <a href="tel:7155570563" class="btn btn-primary est-cta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call to Order This Pour</a>
+                    <p class="est-disclaimer">Estimates are approximate. Call for exact pricing.</p>
                 </div>
-                <div class="service-card" data-reveal>
-                    <span class="service-num">02</span>
-                    <h3>Ready Mix Concrete</h3>
-                    <p>Fresh concrete mixed to your specifications and delivered on time. From driveways to commercial foundations.</p>
-                </div>
-                <div class="service-card" data-reveal>
-                    <span class="service-num">03</span>
-                    <h3>Aggregates &amp; Sand</h3>
-                    <p>Crushed rock, gravel, sand, and road base for construction, landscaping, and site work.</p>
-                </div>
-                <div class="service-card" data-reveal>
-                    <span class="service-num">04</span>
-                    <h3>Ag Lime Spreading</h3>
-                    <p>Agricultural lime application to improve soil pH and crop yields across Northwest Wisconsin farmland.</p>
+                <div class="est-visual">
+                    <svg id="slab-svg" viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg"></svg>
+                    <p class="est-hint">Drag sliders to visualize your project</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Why Us -->
     <section class="why">
         <div class="container">
             <div class="why-grid">
                 <div class="why-item" data-reveal>
-                    <span class="why-number">45<small>mi</small></span>
-                    <div>
-                        <strong>Service Radius</strong>
-                        <p>Covering Polk, Barron, Burnett, and surrounding counties from our Centuria base.</p>
-                    </div>
+                    <span class="why-number"><span data-count="45">0</span><small>mi</small></span>
+                    <div><strong>Service Radius</strong><p>Covering Polk, Barron, Burnett, and surrounding counties from our Centuria base.</p></div>
                 </div>
                 <div class="why-item" data-reveal>
                     <span class="why-number">Same<small>day</small></span>
-                    <div>
-                        <strong>Delivery Available</strong>
-                        <p>When your timeline is tight, we move fast. Call early and we'll be on site.</p>
-                    </div>
+                    <div><strong>Delivery Available</strong><p>When your timeline is tight, we move fast. Call early and we'll be on site.</p></div>
                 </div>
                 <div class="why-item" data-reveal>
-                    <span class="why-number">100<small>%</small></span>
-                    <div>
-                        <strong>Quality Guaranteed</strong>
-                        <p>Every batch tested and verified. We stake our name on what leaves our plant.</p>
-                    </div>
+                    <span class="why-number"><span data-count="100">0</span><small>%</small></span>
+                    <div><strong>Quality Guaranteed</strong><p>Every batch tested and verified. We stake our name on what leaves our plant.</p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Service Area -->
     <section class="area" id="area">
         <div class="container">
-            <div class="section-head" data-reveal>
-                <p class="section-tag">Where We Work</p>
-                <h2 class="section-title">Service Area</h2>
-            </div>
+            <div class="section-head" data-reveal><p class="section-tag">Where We Work</p><h2 class="section-title">Service Area</h2></div>
             <p class="area-intro" data-reveal>Based in Centuria, we deliver concrete pumping, ready mix, aggregates, and ag lime throughout Northwest Wisconsin.</p>
             <div class="area-towns" data-reveal>
-                <span>Almena</span>
-                <span>Amery</span>
-                <span>Balsam Lake</span>
-                <span>Barron</span>
-                <span>Cameron</span>
-                <span>Centuria</span>
-                <span>Cumberland</span>
-                <span>Frederic</span>
-                <span>Luck</span>
-                <span>Rice Lake</span>
-                <span>Shell Lake</span>
-                <span>Spooner</span>
-                <span>St. Croix Falls</span>
-                <span>Turtle Lake</span>
+                <span>Almena</span><span>Amery</span><span>Balsam Lake</span><span>Barron</span><span>Cameron</span><span>Centuria</span><span>Cumberland</span><span>Frederic</span><span>Luck</span><span>Rice Lake</span><span>Shell Lake</span><span>Spooner</span><span>St. Croix Falls</span><span>Turtle Lake</span>
             </div>
             <p class="area-note" data-reveal>Don't see your town? Give us a call &mdash; we likely serve your area.</p>
         </div>
     </section>
 
-    <!-- About -->
     <section class="about" id="about">
         <div class="container">
             <div class="about-grid">
@@ -202,53 +165,29 @@
                     <p>From residential driveways to commercial foundations to municipal infrastructure, we bring the right equipment and expertise to every project. Our team knows this region and we're committed to being the concrete partner you can count on.</p>
                 </div>
                 <div class="about-info" data-reveal>
-                    <div class="info-card">
-                        <strong>Location</strong>
-                        <p>783 1st St<br>Centuria, WI 54824</p>
-                    </div>
-                    <div class="info-card">
-                        <strong>Phone</strong>
-                        <p><a href="tel:7155570563">(715) 557-0563</a></p>
-                    </div>
-                    <div class="info-card">
-                        <strong>Services</strong>
-                        <p>Concrete Pumping, Ready Mix,<br>Aggregates, Ag Lime</p>
-                    </div>
+                    <div class="info-card"><strong>Location</strong><p>783 1st St<br>Centuria, WI 54824</p></div>
+                    <div class="info-card"><strong>Phone</strong><p><a href="tel:7155570563">(715) 557-0563</a></p></div>
+                    <div class="info-card"><strong>Services</strong><p>Concrete Pumping, Ready Mix,<br>Aggregates, Ag Lime</p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta">
         <div class="container cta-inner" data-reveal>
             <h2>Ready to pour?</h2>
             <p>Call us today for a free estimate on your next project.</p>
-            <a href="tel:7155570563" class="btn btn-primary btn-lg">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                (715) 557-0563
-            </a>
+            <a href="tel:7155570563" class="btn btn-primary btn-lg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>(715) 557-0563</a>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container footer-inner">
             <div class="footer-top">
-                <div class="footer-brand">
-                    <span class="logo-main">ST. CROIX</span>
-                    <span class="logo-sub">MATERIALS</span>
-                </div>
-                <div class="footer-links">
-                    <a href="#services">Services</a>
-                    <a href="#area">Service Area</a>
-                    <a href="#about">About</a>
-                    <a href="tel:7155570563">(715) 557-0563</a>
-                </div>
+                <div class="footer-brand"><span class="logo-main">ST. CROIX</span><span class="logo-sub">MATERIALS</span></div>
+                <div class="footer-links"><a href="#services">Services</a><a href="#estimator">Estimator</a><a href="#area">Service Area</a><a href="#about">About</a><a href="tel:7155570563">(715) 557-0563</a></div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 St. Croix Materials. All rights reserved.</p>
-            </div>
+            <div class="footer-bottom"><p>&copy; 2025 St. Croix Materials. All rights reserved.</p></div>
         </div>
     </footer>
 
