@@ -9,18 +9,15 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://stcroixmaterials.com">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%23bf5630'/><text x='16' y='23' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='18' fill='white'>SC</text></svg>">
-
     <meta property="og:title" content="St. Croix Materials | Concrete Pumping & Ready Mix | Centuria, WI">
     <meta property="og:description" content="Professional concrete pumping, ready mix, aggregates & ag lime serving Northwest Wisconsin. Call (715) 557-0563.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://stcroixmaterials.com">
     <meta property="og:image" content="https://stcroixmaterials.com/photos/pump-truck-wind-turbine.jpg">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -39,154 +36,205 @@
 </head>
 <body>
 
-    <nav class="nav" id="nav">
-        <div class="container nav-inner">
-            <a href="#" class="nav-logo">ST. CROIX<span>MATERIALS</span></a>
-            <div class="nav-links" id="nav-links">
-                <a href="#services">Services</a>
-                <a href="#work">Our Work</a>
-                <a href="#area">Area</a>
-                <a href="#about">About</a>
-                <a href="tel:7155570563" class="nav-phone">(715) 557-0563</a>
-            </div>
-            <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
-        </div>
-    </nav>
-
-    <!-- Dark hero -->
-    <header class="hero" id="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-content">
-            <div class="hero-line"></div>
-            <h1 class="hero-title">ST.&thinsp;CROIX<br>MATERIALS</h1>
-            <p class="hero-descriptor">Concrete Pumping &amp; Ready Mix</p>
-            <p class="hero-location" id="hero-location">Centuria, Wisconsin</p>
-            <a href="tel:7155570563" class="hero-cta">(715) 557-0563</a>
-        </div>
-        <div class="scroll-line"><span></span></div>
-    </header>
-
-    <!-- Light: Statement -->
-    <section class="statement">
-        <div class="container">
-            <p class="statement-text" data-reveal>Professional concrete services for residential, commercial, and municipal projects across Northwest&nbsp;Wisconsin.</p>
-        </div>
-    </section>
-
-    <!-- Light: Services -->
-    <section class="services" id="services">
-        <div class="container">
-            <p class="tag" data-reveal>What We Do</p>
-            <div class="service-list">
-                <div class="service-row" data-reveal>
-                    <span class="service-num">01</span>
-                    <div class="service-body"><h3>Concrete Pumping</h3><p>Boom and line pump services for precision placement. We reach the tough spots so your project stays on schedule.</p></div>
-                </div>
-                <div class="service-row" data-reveal>
-                    <span class="service-num">02</span>
-                    <div class="service-body"><h3>Ready Mix Concrete</h3><p>Fresh concrete mixed to your specifications and delivered on time. From driveways to commercial foundations.</p></div>
-                </div>
-                <div class="service-row" data-reveal>
-                    <span class="service-num">03</span>
-                    <div class="service-body"><h3>Aggregates &amp; Sand</h3><p>Crushed rock, gravel, sand, and road base for construction, landscaping, and site work.</p></div>
-                </div>
-                <div class="service-row" data-reveal>
-                    <span class="service-num">04</span>
-                    <div class="service-body"><h3>Ag Lime Spreading</h3><p>Agricultural lime application to improve soil pH and crop yields across Northwest Wisconsin farmland.</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Dark: Gallery -->
-    <section class="gallery" id="work">
-        <div class="container">
-            <p class="tag tag-light" data-reveal>Our Work</p>
-        </div>
-        <div class="gallery-grid" id="gallery-grid" data-reveal></div>
-    </section>
-
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" role="dialog" aria-label="Photo viewer">
-        <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
-        <button class="lb-prev" id="lb-prev" aria-label="Previous">&lsaquo;</button>
-        <button class="lb-next" id="lb-next" aria-label="Next">&rsaquo;</button>
-        <div class="lb-content">
-            <img id="lb-img" src="" alt="">
-            <p class="lb-caption" id="lb-caption"></p>
-            <p class="lb-counter" id="lb-counter"></p>
+    <!-- Top bar -->
+    <div class="topbar">
+        <div class="wrap topbar-inner">
+            <span class="topbar-loc" id="topbar-loc">Centuria, WI</span>
+            <a href="tel:7155570563" class="topbar-phone">(715) 557-0563</a>
         </div>
     </div>
 
-    <!-- Dark: Stats -->
-    <section class="stats">
-        <div class="container stats-grid">
-            <div class="stat" data-reveal>
-                <div class="stat-value"><span data-count="45">0</span><small>mi</small></div>
-                <div class="stat-label">Service Radius</div>
+    <!-- Nav -->
+    <nav class="nav" id="nav">
+        <div class="wrap nav-inner">
+            <a href="#" class="logo">
+                <strong>St. Croix Materials</strong>
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="#services">Services</a>
+                <a href="#work">Our Work</a>
+                <a href="#area">Service Area</a>
+                <a href="#about">About</a>
+                <a href="tel:7155570563" class="nav-cta">Call Now</a>
             </div>
-            <div class="stat" data-reveal>
-                <div class="stat-value">Same<small>day</small></div>
-                <div class="stat-label">Delivery Available</div>
+            <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-img"></div>
+        <div class="hero-overlay">
+            <div class="wrap hero-inner">
+                <p class="hero-tag">Centuria, Wisconsin</p>
+                <h1 class="hero-h1">Concrete Pumping<br>&amp; Ready Mix</h1>
+                <p class="hero-sub">Serving residential, commercial, and agricultural projects across Northwest Wisconsin since 2023.</p>
+                <div class="hero-btns">
+                    <a href="tel:7155570563" class="btn btn-accent">Call (715) 557-0563</a>
+                    <a href="#services" class="btn btn-outline">View Services</a>
+                </div>
             </div>
-            <div class="stat" data-reveal>
-                <div class="stat-value"><span data-count="100">0</span><small>%</small></div>
-                <div class="stat-label">Quality Guaranteed</div>
+        </div>
+    </header>
+
+    <!-- Services -->
+    <section class="section" id="services">
+        <div class="wrap">
+            <div class="section-top" data-reveal>
+                <h2>What We Do</h2>
+                <p class="section-desc">From driveways to wind turbine pads, we handle concrete projects of every size.</p>
+            </div>
+            <div class="cards">
+                <div class="card" data-reveal>
+                    <div class="card-icon">01</div>
+                    <h3>Concrete Pumping</h3>
+                    <p>Boom and line pump services for precision placement. We reach the tough spots so your project stays on schedule.</p>
+                </div>
+                <div class="card" data-reveal>
+                    <div class="card-icon">02</div>
+                    <h3>Ready Mix</h3>
+                    <p>Fresh concrete mixed to your specifications and delivered on time. From small pours to large-scale commercial jobs.</p>
+                </div>
+                <div class="card" data-reveal>
+                    <div class="card-icon">03</div>
+                    <h3>Aggregates &amp; Sand</h3>
+                    <p>Crushed rock, gravel, sand, and road base for construction, landscaping, and site work.</p>
+                </div>
+                <div class="card" data-reveal>
+                    <div class="card-icon">04</div>
+                    <h3>Ag Lime Spreading</h3>
+                    <p>Agricultural lime application to improve soil pH and crop yields across Northwest Wisconsin farmland.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Light: Service Area -->
-    <section class="area" id="area">
-        <div class="container">
-            <p class="tag" data-reveal>Where We Work</p>
-            <h2 class="area-heading" data-reveal>Serving a 45-mile radius from Centuria</h2>
-            <p class="area-text" data-reveal>We deliver concrete pumping, ready mix, aggregates, and ag lime across Polk, Barron, Burnett, and surrounding counties.</p>
-            <p class="area-towns" data-reveal>Almena&ensp;&middot;&ensp;Amery&ensp;&middot;&ensp;Balsam Lake&ensp;&middot;&ensp;Barron&ensp;&middot;&ensp;Cameron&ensp;&middot;&ensp;Centuria&ensp;&middot;&ensp;Cumberland&ensp;&middot;&ensp;Frederic&ensp;&middot;&ensp;Luck&ensp;&middot;&ensp;Rice Lake&ensp;&middot;&ensp;Shell Lake&ensp;&middot;&ensp;Spooner&ensp;&middot;&ensp;St.&nbsp;Croix Falls&ensp;&middot;&ensp;Turtle Lake</p>
-            <p class="area-note" data-reveal>Don't see your town? Give us a call — we likely serve your area.</p>
+    <!-- Gallery -->
+    <section class="section section-gray" id="work">
+        <div class="wrap">
+            <div class="section-top" data-reveal>
+                <h2>Our Work</h2>
+                <p class="section-desc">Real projects from across Northwest Wisconsin.</p>
+            </div>
+            <div class="filters" id="filters" data-reveal>
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="pumping">Pumping</button>
+                <button class="filter-btn" data-filter="flatwork">Flatwork</button>
+                <button class="filter-btn" data-filter="residential">Residential</button>
+                <button class="filter-btn" data-filter="commercial">Commercial</button>
+                <button class="filter-btn" data-filter="agricultural">Agricultural</button>
+            </div>
+            <div class="gallery" id="gallery-grid" data-reveal></div>
         </div>
     </section>
 
-    <!-- Light: About -->
-    <section class="about" id="about">
-        <div class="container about-grid">
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lb-close" id="lb-close" aria-label="Close">&times;</button>
+        <button class="lb-prev" id="lb-prev" aria-label="Previous">&#8249;</button>
+        <button class="lb-next" id="lb-next" aria-label="Next">&#8250;</button>
+        <div class="lb-body">
+            <img id="lb-img" src="" alt="">
+            <p class="lb-cap" id="lb-cap"></p>
+            <p class="lb-ct" id="lb-ct"></p>
+        </div>
+    </div>
+
+    <!-- Stats -->
+    <section class="stats-bar">
+        <div class="wrap stats-inner">
+            <div class="stat" data-reveal>
+                <strong><span data-count="45">0</span> mi</strong>
+                <span>Service Radius</span>
+            </div>
+            <div class="stat" data-reveal>
+                <strong>Same Day</strong>
+                <span>Delivery Available</span>
+            </div>
+            <div class="stat" data-reveal>
+                <strong><span data-count="100">0</span>%</strong>
+                <span>Quality Guaranteed</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Area -->
+    <section class="section" id="area">
+        <div class="wrap">
+            <div class="section-top" data-reveal>
+                <h2>Service Area</h2>
+                <p class="section-desc">We serve a 45-mile radius from our base in Centuria, covering Polk, Barron, Burnett, and surrounding counties.</p>
+            </div>
+            <div class="towns" data-reveal>
+                <span>Almena</span><span>Amery</span><span>Balsam Lake</span><span>Barron</span>
+                <span>Cameron</span><span>Centuria</span><span>Cumberland</span><span>Frederic</span>
+                <span>Luck</span><span>Rice Lake</span><span>Shell Lake</span><span>Spooner</span>
+                <span>St. Croix Falls</span><span>Turtle Lake</span>
+            </div>
+            <p class="muted" data-reveal>Don't see your town? Give us a call — we likely serve your area.</p>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="section section-gray" id="about">
+        <div class="wrap about-grid">
             <div class="about-text" data-reveal>
-                <p class="tag">Who We Are</p>
                 <h2>Built on Reliability</h2>
                 <p>St. Croix Materials provides concrete pumping and ready mix services to Northwest Wisconsin. We opened our doors in 2023 with a simple goal: deliver quality materials on time, every time, with the kind of service a small community deserves.</p>
-                <p>From residential driveways to commercial foundations to municipal infrastructure, we bring the right equipment and expertise to every project.</p>
+                <p>From residential driveways to commercial foundations to municipal infrastructure, we bring the right equipment and expertise to every project. Our team knows this region — and we're committed to being the concrete partner you can count on.</p>
             </div>
-            <div class="about-contact" data-reveal>
-                <div class="contact-block"><span class="contact-label">Location</span><p>783 1st St<br>Centuria, WI 54824</p></div>
-                <div class="contact-block"><span class="contact-label">Phone</span><p><a href="tel:7155570563">(715) 557-0563</a></p></div>
-                <div class="contact-block"><span class="contact-label">Services</span><p>Concrete Pumping, Ready Mix, Aggregates, Ag Lime</p></div>
+            <div class="about-info" data-reveal>
+                <div class="info-row">
+                    <span class="info-label">Location</span>
+                    <span>783 1st St, Centuria, WI 54824</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Phone</span>
+                    <a href="tel:7155570563" class="info-phone">(715) 557-0563</a>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Services</span>
+                    <span>Concrete Pumping, Ready Mix, Aggregates, Ag Lime</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Coverage</span>
+                    <span>45-mile radius from Centuria, WI</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Accent: CTA -->
+    <!-- CTA -->
     <section class="cta">
-        <div class="container cta-inner" data-reveal>
-            <p class="cta-lead">Ready to pour?</p>
-            <a href="tel:7155570563" class="cta-phone">(715) 557-0563</a>
-            <p class="cta-sub">Call for a free estimate</p>
+        <div class="wrap cta-inner" data-reveal>
+            <h2>Ready to start your project?</h2>
+            <p>Call us today for a free estimate.</p>
+            <a href="tel:7155570563" class="btn btn-white">Call (715) 557-0563</a>
         </div>
     </section>
 
-    <!-- Dark: Footer -->
+    <!-- Footer -->
     <footer class="footer">
-        <div class="container footer-inner">
+        <div class="wrap footer-inner">
             <div class="footer-top">
-                <span class="nav-logo footer-logo">ST. CROIX<span>MATERIALS</span></span>
+                <div>
+                    <strong class="footer-name">St. Croix Materials</strong>
+                    <p>Concrete Pumping & Ready Mix<br>Centuria, Wisconsin</p>
+                </div>
                 <div class="footer-links">
                     <a href="#services">Services</a>
                     <a href="#work">Our Work</a>
-                    <a href="#area">Area</a>
+                    <a href="#area">Service Area</a>
                     <a href="#about">About</a>
+                </div>
+                <div class="footer-contact">
                     <a href="tel:7155570563">(715) 557-0563</a>
+                    <span>783 1st St, Centuria, WI 54824</span>
                 </div>
             </div>
-            <p class="footer-copy">&copy; 2025 St. Croix Materials. All rights reserved.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 St. Croix Materials. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 

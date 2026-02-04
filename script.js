@@ -2,34 +2,71 @@
    ST. CROIX MATERIALS
    =========================== */
 
-// ——— Gallery from photos.js ———
+// ——— Gallery ———
 (function() {
     if (typeof GALLERY === 'undefined') return;
     var grid = document.getElementById('gallery-grid');
     if (!grid) return;
+
     GALLERY.forEach(function(photo, i) {
         var item = document.createElement('div');
-        item.className = 'gallery-item';
+        item.className = 'gal-item';
         item.setAttribute('data-index', i);
-        item.setAttribute('data-title', photo.title);
+        item.setAttribute('data-cat', photo.category);
+
         var img = document.createElement('img');
         img.src = 'photos/' + photo.file;
         img.alt = photo.alt;
         img.loading = i < 6 ? 'eager' : 'lazy';
         img.width = 600;
         img.height = 450;
+
+        var label = document.createElement('span');
+        label.className = 'gal-label';
+        label.textContent = photo.title;
+
         item.appendChild(img);
+        item.appendChild(label);
         grid.appendChild(item);
+
         item.addEventListener('click', function() { openLightbox(i); });
     });
 })();
 
+// ——— Filters ———
+var filtersEl = document.getElementById('filters');
+if (filtersEl) {
+    filtersEl.addEventListener('click', function(e) {
+        var btn = e.target.closest('.filter-btn');
+        if (!btn) return;
+
+        document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+
+        var cat = btn.getAttribute('data-filter');
+        document.querySelectorAll('.gal-item').forEach(function(item) {
+            if (cat === 'all' || item.getAttribute('data-cat') === cat) {
+                item.classList.remove('hidden');
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+    });
+}
+
 // ——— Lightbox ———
 var lightbox = document.getElementById('lightbox');
 var lbImg = document.getElementById('lb-img');
-var lbCaption = document.getElementById('lb-caption');
-var lbCounter = document.getElementById('lb-counter');
+var lbCap = document.getElementById('lb-cap');
+var lbCt = document.getElementById('lb-ct');
 var currentIndex = 0;
+
+function getVisiblePhotos() {
+    var items = document.querySelectorAll('.gal-item:not(.hidden)');
+    var indices = [];
+    items.forEach(function(item) { indices.push(parseInt(item.getAttribute('data-index'))); });
+    return indices;
+}
 
 function openLightbox(index) {
     currentIndex = index;
@@ -37,26 +74,42 @@ function openLightbox(index) {
     lightbox.classList.add('active');
     document.body.classList.add('lb-open');
 }
+
 function closeLightbox() {
     lightbox.classList.remove('active');
     document.body.classList.remove('lb-open');
 }
+
 function updateLightbox() {
     if (typeof GALLERY === 'undefined') return;
     var photo = GALLERY[currentIndex];
     lbImg.src = 'photos/' + photo.file;
     lbImg.alt = photo.alt;
-    lbCaption.textContent = photo.title;
-    lbCounter.textContent = (currentIndex + 1) + ' / ' + GALLERY.length;
+    lbCap.textContent = photo.title;
+    var visible = getVisiblePhotos();
+    var pos = visible.indexOf(currentIndex) + 1;
+    lbCt.textContent = pos + ' / ' + visible.length;
 }
-function nextPhoto() { currentIndex = (currentIndex + 1) % GALLERY.length; updateLightbox(); }
-function prevPhoto() { currentIndex = (currentIndex - 1 + GALLERY.length) % GALLERY.length; updateLightbox(); }
+
+function nextPhoto() {
+    var visible = getVisiblePhotos();
+    var pos = visible.indexOf(currentIndex);
+    currentIndex = visible[(pos + 1) % visible.length];
+    updateLightbox();
+}
+
+function prevPhoto() {
+    var visible = getVisiblePhotos();
+    var pos = visible.indexOf(currentIndex);
+    currentIndex = visible[(pos - 1 + visible.length) % visible.length];
+    updateLightbox();
+}
 
 document.getElementById('lb-close').addEventListener('click', closeLightbox);
 document.getElementById('lb-prev').addEventListener('click', prevPhoto);
 document.getElementById('lb-next').addEventListener('click', nextPhoto);
 lightbox.addEventListener('click', function(e) {
-    if (e.target === lightbox || e.target.classList.contains('lb-content')) closeLightbox();
+    if (e.target === lightbox || e.target.classList.contains('lb-body')) closeLightbox();
 });
 document.addEventListener('keydown', function(e) {
     if (!lightbox.classList.contains('active')) return;
@@ -70,21 +123,13 @@ var revealObs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
         if (e.isIntersecting) { e.target.classList.add('revealed'); revealObs.unobserve(e.target); }
     });
-}, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+}, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
 document.querySelectorAll('[data-reveal]').forEach(function(el) { revealObs.observe(el); });
 
-// ——— Nav: transparent over hero → white on scroll ———
-var nav = document.getElementById('nav');
-var hero = document.getElementById('hero');
-var heroObs = new IntersectionObserver(function(entries) {
-    nav.classList.toggle('scrolled', !entries[0].isIntersecting);
-}, { threshold: 0.05 });
-heroObs.observe(hero);
-
 // ——— Mobile Menu ———
-var toggle = document.getElementById('mobile-toggle');
+var burger = document.getElementById('burger');
 var navLinks = document.getElementById('nav-links');
-toggle.addEventListener('click', function() {
+burger.addEventListener('click', function() {
     navLinks.classList.toggle('active');
     this.classList.toggle('open');
     document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
@@ -92,7 +137,7 @@ toggle.addEventListener('click', function() {
 navLinks.querySelectorAll('a').forEach(function(a) {
     a.addEventListener('click', function() {
         navLinks.classList.remove('active');
-        toggle.classList.remove('open');
+        burger.classList.remove('open');
         document.body.style.overflow = '';
     });
 });
@@ -106,7 +151,7 @@ var counterObs = new IntersectionObserver(function(entries) {
             var start = null;
             function step(ts) {
                 if (!start) start = ts;
-                var p = Math.min((ts - start) / 2000, 1);
+                var p = Math.min((ts - start) / 1800, 1);
                 el.textContent = Math.round((1 - Math.pow(1 - p, 4)) * target);
                 if (p < 1) requestAnimationFrame(step);
             }
@@ -124,8 +169,8 @@ document.querySelectorAll('[data-count]').forEach(function(el) { counterObs.obse
             .then(function(r) { return r.json(); })
             .then(function(d) {
                 if (d && d.current_weather) {
-                    var el = document.getElementById('hero-location');
-                    if (el) el.textContent = Math.round(d.current_weather.temperature) + '\u00B0F \u00B7 Centuria, Wisconsin';
+                    var el = document.getElementById('topbar-loc');
+                    if (el) el.textContent = Math.round(d.current_weather.temperature) + '\u00B0F in Centuria, WI';
                 }
             }).catch(function() {});
     } catch(e) {}
