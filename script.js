@@ -7,28 +7,22 @@
     if (typeof GALLERY === 'undefined') return;
     var grid = document.getElementById('gallery-grid');
     if (!grid) return;
-
     GALLERY.forEach(function(photo, i) {
         var item = document.createElement('div');
         item.className = 'gal-item';
         item.setAttribute('data-index', i);
         item.setAttribute('data-cat', photo.category);
-
         var img = document.createElement('img');
         img.src = 'photos/' + photo.file;
         img.alt = photo.alt;
         img.loading = i < 6 ? 'eager' : 'lazy';
-        img.width = 600;
-        img.height = 450;
-
+        img.width = 600; img.height = 450;
         var label = document.createElement('span');
         label.className = 'gal-label';
         label.textContent = photo.title;
-
         item.appendChild(img);
         item.appendChild(label);
         grid.appendChild(item);
-
         item.addEventListener('click', function() { openLightbox(i); });
     });
 })();
@@ -39,10 +33,8 @@ if (filtersEl) {
     filtersEl.addEventListener('click', function(e) {
         var btn = e.target.closest('.filter-btn');
         if (!btn) return;
-
         document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
         btn.classList.add('active');
-
         var cat = btn.getAttribute('data-filter');
         document.querySelectorAll('.gal-item').forEach(function(item) {
             if (cat === 'all' || item.getAttribute('data-cat') === cat) {
@@ -62,47 +54,35 @@ var lbCt = document.getElementById('lb-ct');
 var currentIndex = 0;
 
 function getVisiblePhotos() {
-    var items = document.querySelectorAll('.gal-item:not(.hidden)');
     var indices = [];
-    items.forEach(function(item) { indices.push(parseInt(item.getAttribute('data-index'))); });
+    document.querySelectorAll('.gal-item:not(.hidden)').forEach(function(item) {
+        indices.push(parseInt(item.getAttribute('data-index')));
+    });
     return indices;
 }
 
 function openLightbox(index) {
-    currentIndex = index;
-    updateLightbox();
-    lightbox.classList.add('active');
-    document.body.classList.add('lb-open');
+    currentIndex = index; updateLightbox();
+    lightbox.classList.add('active'); document.body.classList.add('lb-open');
 }
-
 function closeLightbox() {
-    lightbox.classList.remove('active');
-    document.body.classList.remove('lb-open');
+    lightbox.classList.remove('active'); document.body.classList.remove('lb-open');
 }
-
 function updateLightbox() {
     if (typeof GALLERY === 'undefined') return;
     var photo = GALLERY[currentIndex];
-    lbImg.src = 'photos/' + photo.file;
-    lbImg.alt = photo.alt;
+    lbImg.src = 'photos/' + photo.file; lbImg.alt = photo.alt;
     lbCap.textContent = photo.title;
     var visible = getVisiblePhotos();
-    var pos = visible.indexOf(currentIndex) + 1;
-    lbCt.textContent = pos + ' / ' + visible.length;
+    lbCt.textContent = (visible.indexOf(currentIndex) + 1) + ' / ' + visible.length;
 }
-
 function nextPhoto() {
-    var visible = getVisiblePhotos();
-    var pos = visible.indexOf(currentIndex);
-    currentIndex = visible[(pos + 1) % visible.length];
-    updateLightbox();
+    var v = getVisiblePhotos(); var p = v.indexOf(currentIndex);
+    currentIndex = v[(p + 1) % v.length]; updateLightbox();
 }
-
 function prevPhoto() {
-    var visible = getVisiblePhotos();
-    var pos = visible.indexOf(currentIndex);
-    currentIndex = visible[(pos - 1 + visible.length) % visible.length];
-    updateLightbox();
+    var v = getVisiblePhotos(); var p = v.indexOf(currentIndex);
+    currentIndex = v[(p - 1 + v.length) % v.length]; updateLightbox();
 }
 
 document.getElementById('lb-close').addEventListener('click', closeLightbox);
@@ -130,33 +110,29 @@ document.querySelectorAll('[data-reveal]').forEach(function(el) { revealObs.obse
 var burger = document.getElementById('burger');
 var navLinks = document.getElementById('nav-links');
 burger.addEventListener('click', function() {
-    navLinks.classList.toggle('active');
-    this.classList.toggle('open');
+    navLinks.classList.toggle('active'); this.classList.toggle('open');
     document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
 });
 navLinks.querySelectorAll('a').forEach(function(a) {
     a.addEventListener('click', function() {
-        navLinks.classList.remove('active');
-        burger.classList.remove('open');
+        navLinks.classList.remove('active'); burger.classList.remove('open');
         document.body.style.overflow = '';
     });
 });
 
-// ——— Counter Animation ———
+// ——— Counter ———
 var counterObs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) {
         if (e.isIntersecting) {
-            var el = e.target;
-            var target = parseInt(el.getAttribute('data-count'));
+            var el = e.target; var target = parseInt(el.getAttribute('data-count'));
             var start = null;
             function step(ts) {
                 if (!start) start = ts;
-                var p = Math.min((ts - start) / 1800, 1);
+                var p = Math.min((ts - start) / 1500, 1);
                 el.textContent = Math.round((1 - Math.pow(1 - p, 4)) * target);
                 if (p < 1) requestAnimationFrame(step);
             }
-            requestAnimationFrame(step);
-            counterObs.unobserve(el);
+            requestAnimationFrame(step); counterObs.unobserve(el);
         }
     });
 }, { threshold: 0.5 });
