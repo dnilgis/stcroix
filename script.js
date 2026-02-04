@@ -151,3 +151,108 @@ document.querySelectorAll('[data-count]').forEach(function(el) { counterObs.obse
             }).catch(function() {});
     } catch(e) {}
 })();
+
+// ——— Geolocation Banner ———
+(function() {
+    // Don't show twice per session
+    if (sessionStorage.getItem('scm-geo-shown')) return;
+
+    // Centuria, WI coordinates
+    var BASE_LAT = 45.4541;
+    var BASE_LNG = -92.1413;
+
+    // Haversine distance in miles
+    function distanceMi(lat1, lng1, lat2, lng2) {
+        var R = 3959;
+        var dLat = (lat2 - lat1) * Math.PI / 180;
+        var dLng = (lng2 - lng1) * Math.PI / 180;
+        var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLng/2) * Math.sin(dLng/2);
+        return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function getMessage(miles, city) {
+        var loc = city ? city : 'your area';
+        if (miles <= 45) {
+            return {
+                icon: '🟢',
+                text: 'Great news — we deliver to ' + loc + '! Give us a call for a free estimate.',
+                cta: true
+            };
+        } else if (miles <= 60) {
+            return {
+                icon: '🟡',
+                text: loc + ' is just outside our usual range, but call us — we can probably make it work!',
+                cta: true
+            };
+        } else if (miles <= 150) {
+            return {
+                icon: '🟠',
+                text: loc + ' is about ' + Math.round(miles) + ' miles out — that\'s a haul, but reach out if you need us.',
+                cta: true
+            };
+        } else {
+            return {
+                icon: '📍',
+                text: 'Looks like you\'re about ' + Math.round(miles) + ' miles from us in Centuria, WI — eek, that\'s a haul! But if you\'re ever in Northwest Wisconsin, we\'d love to help.',
+                cta: false
+            };
+        }
+    }
+
+    function showBanner(msg) {
+        sessionStorage.setItem('scm-geo-shown', '1');
+
+        var banner = document.createElement('div');
+        banner.className = 'geo-banner';
+        banner.innerHTML =
+            '<div class="geo-inner">' +
+                '<span class="geo-icon">' + msg.icon + '</span>' +
+                '<span class="geo-text">' + msg.text + '</span>' +
+                (msg.cta ? '<a href="tel:7155570563" class="geo-cta">Call Now</a>' : '') +
+                '<button class="geo-close" aria-label="Close">&times;</button>' +
+            '</div>';
+
+        document.body.appendChild(banner);
+
+        // Trigger animation
+        requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+                banner.classList.add('geo-visible');
+            });
+        });
+
+        banner.querySelector('.geo-close').addEventListener('click', function() {
+            banner.classList.remove('geo-visible');
+            setTimeout(function() { banner.remove(); }, 400);
+        });
+
+        // Auto dismiss after 12s
+        setTimeout(function() {
+            if (banner.parentNode) {
+                banner.classList.remove('geo-visible');
+                setTimeout(function() { banner.remove(); }, 400);
+            }
+        }, 12000);
+    }
+
+    // Try IP-based geolocation (no permission needed)
+    // Delay so it doesn't compete with initial page load
+    setTimeout(function() {
+        fetch('https://ipapi.co/json/')
+            .then(function(r) { return r.json(); })
+            .then(function(d) {
+                if (d && d.latitude && d.longitude) {
+                    var miles = distanceMi(d.latitude, d.longitude, BASE_LAT, BASE_LNG);
+                    var city = d.city || '';
+                    if (d.region) city += (city ? ', ' : '') + d.region;
+                    var msg = getMessage(miles, city);
+                    showBanner(msg);
+                }
+            })
+            .catch(function() {
+                // Silently fail — no banner is fine
+            });
+    }, 2500);
+})();
